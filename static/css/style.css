@@ -4,3 +4,44 @@
     height: 250px;
     width: 250px;
 }
+
+.navbar {
+    padding-top: 20px !important;
+}
+
+.burger {
+    display: none;
+}
+
+.large-screen-navbar {
+    display: block;
+}
+
+.large-screen-navbar a {
+    margin-right: 20px;
+}
+
+
+/* Homepage */
+
+.youtube-embed {
+    width: 100%;
+    height: 400px;
+}
+
+.site-portfolio {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 768px) {
+    .burger {
+        display: block;
+    }
+
+    .large-screen-navbar {
+        display: none;
+    }
+}
