@@ -1,3 +1,14 @@
+/* Global Classes */
+
+.visible {
+    display: block;
+}
+
+.black {
+    color: #000 !important;
+}
+
+
 /* Header - Found in all pages, editable on templates/base.html */
 
 .logo {
@@ -21,6 +32,26 @@
     margin-right: 20px;
 }
 
+.navbar li {
+    list-style-type: none;
+    display: inline;
+}
+
+.products-container ul {
+    padding-left: 0px;
+}
+
+.products-menu-large {
+    margin-left: 115px;
+}
+
+.dropdown-item {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
 
 /* Homepage */
 
@@ -34,7 +65,18 @@
     padding-bottom: 50px !important;
 }
 
+.testimonial-wrap {
+    background-color: #d6f9ff;
+}
+
+
 /* Media Queries */
+
+@media screen and (min-width: 769px) {
+    #main-navbar {
+        display: none;
+    }
+}
 
 @media screen and (max-width: 768px) {
     .burger {

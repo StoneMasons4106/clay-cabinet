@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HomePagePicture
+from .models import HomePagePicture, Testimonial
 
 class HomePagePictureAdmin(admin.ModelAdmin):
     list_display = (
@@ -17,4 +17,20 @@ class HomePagePictureAdmin(admin.ModelAdmin):
 
     ordering = ('name',)
 
+
+class TestimonialAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+
+    fields = (
+        'name',
+        'image',
+        'testimonial',
+    )
+
+    ordering = ('name',)
+
+
 admin.site.register(HomePagePicture, HomePagePictureAdmin)
+admin.site.register(Testimonial, TestimonialAdmin)
