@@ -56,7 +56,20 @@
                 <li><a href="#" class="dropdown-item black">View All Products</a></li>
               </ul>
             </li>
-            <li><a href="#">Login</a></li>
+            <li class="dropdown"><a href="#"><span>My Account</span> <i class="bi bi-chevron-down"></i></a>
+              <ul class="dropdown-menu account-menu-small">
+                {% if request.user.is_authenticated %}
+                  <li><a href="#" class="dropdown-item black">My Account</a></li>
+                  {% if request.user.is_superuser %}
+                    <li><a href="{% url 'admin:index' %}" class="dropdown-item black">Site Management</a></li>
+                  {% endif %}
+                  <li><a href="{% url 'account_logout' %}" class="dropdown-item black">Logout</a></li>
+                {% else %}
+                  <li><a href="{% url 'account_login' %}" class="dropdown-item black">Login</a></li>
+                  <li><a href="{% url 'account_signup' %}" class="dropdown-item black">Register</a></li>
+                {% endif %}
+              </ul>          
+            </li>
             <li><a href="#">Cart</a></li>
           </ul>
         </div>
@@ -79,7 +92,20 @@
             <li><a href="#" class="dropdown-item">View All Products</a></li>
           </ul>
         </li>
-        <li><a href="#">Login</a></li>
+        <li class="dropdown"><a href="#"><span>My Account</span> <i class="bi bi-chevron-down"></i></a>
+          <ul class="dropdown-menu account-menu-large">
+            {% if request.user.is_authenticated %}
+              <li><a href="#" class="dropdown-item">My Account</a></li>
+              {% if request.user.is_superuser %}
+                <li><a href="{% url 'admin:index' %}" class="dropdown-item">Site Management</a></li>
+              {% endif %}
+              <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
+            {% else %}
+              <li><a href="{% url 'account_login' %}" class="dropdown-item">Login</a></li>
+              <li><a href="{% url 'account_signup' %}" class="dropdown-item">Register</a></li>
+            {% endif %}
+          </ul>          
+        </li>
         <li><a href="#">Cart</a></li>
       </div>
       <a href="#" class="burger" data-bs-toggle="collapse" data-bs-target="#main-navbar">
@@ -96,11 +122,11 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
-          <p class="mb-1">&copy; Copyright MyPortfolio. All Rights Reserved</p>
+          <p class="mb-1">&copy; Copyright ClayCabinet. All Rights Reserved</p>
           
         </div>
         <div class="col-sm-6 social text-md-end">
-          <a href="#"><span class="bi bi-twitter"></span></a>
+          <a href="#"><span class="bi bi-youtube"></span></a>
           <a href="#"><span class="bi bi-facebook"></span></a>
           <a href="#"><span class="bi bi-instagram"></span></a>
           <a href="#"><span class="bi bi-linkedin"></span></a>

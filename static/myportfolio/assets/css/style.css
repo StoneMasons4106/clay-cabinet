@@ -319,7 +319,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 .custom-navmenu .custom-menu li a {
   color: #fff;
-  padding: 10px 0 !important;
+  padding: 10px 0;
 }
 .custom-navmenu .custom-menu li a:hover {
   text-decoration: none;
