@@ -21,15 +21,17 @@ class HomePagePictureAdmin(admin.ModelAdmin):
 class TestimonialAdmin(admin.ModelAdmin):
     list_display = (
         'name',
+        'date',
     )
 
     fields = (
         'name',
+        'date',
         'image',
         'testimonial',
     )
 
-    ordering = ('name',)
+    ordering = ('date',)
 
 
 admin.site.register(HomePagePicture, HomePagePictureAdmin)
