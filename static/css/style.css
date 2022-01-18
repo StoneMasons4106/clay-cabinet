@@ -12,8 +12,8 @@
 /* Header - Found in all pages, editable on templates/base.html */
 
 .logo {
-    height: 250px;
-    width: 250px;
+    height: 300px;
+    width: 300px;
 }
 
 .navbar {
@@ -42,11 +42,11 @@
 }
 
 .products-menu-large {
-    margin-left: 181.23px;
+    margin-left: 212.72px;
 }
 
 .account-menu-large {
-    margin-left: 300.67px;
+    margin-left: 362.42px;
 }
 
 .products-menu-small .dropdown-item,
@@ -62,7 +62,18 @@
     text-decoration: none;
 }
 
-/* Homepage */
+
+/* Footer - Found in all pages, editable on templates/base.html */
+
+.footer .container {
+    padding-top: 60px;
+}
+
+/* Homepage home/templates/home/index.html */
+
+h1 b {
+    font-size: 40px;
+}
 
 .youtube-embed {
     width: 100%;
@@ -70,26 +81,36 @@
 }
 
 .site-portfolio {
-    padding-top: 20px !important;
+    padding-top: 100px !important;
     padding-bottom: 0px !important;
+    background-color: #f9eeae;
 }
 
 .video-section {
     padding-top: 100px !important;
     padding-bottom: 0px !important;
+    background-color: #b599c1;
 }
 
 .testimonial-section {
     padding-top: 100px !important;
     padding-bottom: 100px !important;
+    background-color: #a9d193;
 }
 
 .testimonial-wrap {
-    background-color: #d6f9ff;
+    background-color: #a9d193;
 }
 
 
 /* Media Queries */
+
+@media screen and (max-width: 600px) {
+    .logo {
+        height: 200px;
+        width: 200px;
+    }
+}
 
 @media screen and (min-width: 992px) {
     #main-navbar {

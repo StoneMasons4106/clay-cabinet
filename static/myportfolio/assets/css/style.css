@@ -8,10 +8,17 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@font-face {
+  font-family: 'BubbleJellyShadow';
+  font-style: normal;
+  font-weight: normal;
+  src: url('font/BubbleJellyShadow.otf') format("opentype");
+}
+
 body {
-  font-family: 'Comfortaa', cursive;
-  font-weight: 400;
+  font-family: 'BubbleJellyShadow', serif;
   color: #0d1e2d;
+  font-size: 24px;
   background-color: #d6f9ff;
 }
 
@@ -25,8 +32,8 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
-  font-family: 'Comfortaa', cursive;
-  font-weight: 600;
+  font-family: 'BubbleJellyShadow', serif;
+  font-size: 40px;
 }
 
 .section {
@@ -426,7 +433,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 # Footer
 --------------------------------------------------------------*/
 .footer {
-  padding: 0 0 4rem 0;
+  padding: 0 0 0 0;
 }
 .footer a {
   color: #000;
