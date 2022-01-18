@@ -10,8 +10,8 @@
     <div class="container">
     <div class="row mb-5 align-items-center">
         <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
-        <h2>Welcome to ClayCabinet!</h2>
-        <p class="mb-0">We make kawaii clay crafts, basically handcrafting happiness!</p>
+        <h2 id="gallery">{{content.gallery_title}}</h2>
+        <p class="mb-0">{{content.gallery_text}}</p>
         </div>
         <div class="col-md-12 col-lg-6 text-start text-lg-end" data-aos="fade-up" data-aos-delay="100">
         </div>
@@ -24,7 +24,11 @@
             <h3>{{ image.title }}</h3>
             <span>{{ image.description }}</span>
             </div>
+            {% if image.image|length %}
             <img class="img-fluid" src="{{MEDIA_URL}}{{image.image}}">
+            {% else %}
+            <img class="img-fluid" src="{{MEDIA_URL}}noimage.png">
+            {% endif %}
         </a>
         </div>
         {% endfor %}
@@ -32,13 +36,13 @@
     </div>
 </section><!-- End  Works Section -->
 
-<!-- ======= Clients Section ======= -->
-<section class="section">
+<!-- ======= Videos Section ======= -->
+<section class="section video-section">
     <div class="container">
     <div class="row justify-content-center text-center mb-4">
         <div class="col-5">
-        <h3 class="h3 heading">Latest Videos</h3>
-        <p>Check out some of my latest videos I posted on my channel!</p>
+        <h3 class="h3 heading" id="videos">{{content.video_title}}</h3>
+        <p>{{content.video_text}}</p>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -52,12 +56,12 @@
 </section><!-- End Clients Section -->
 
 <!-- ======= Testimonials Section ======= -->
-<section class="section pt-0">
+<section class="section testimonial-section pt-0">
     <div class="container">
     <div class="row justify-content-center text-center mb-4">
         <div class="col-5">
-        <h3 class="h3 heading">Testimonials</h3>
-        <p>Hear for yourself how much our customers have enjoyed our products!</p>
+        <h3 class="h3 heading" id="testimonials">{{content.testimonial_title}}</h3>
+        <p>{{content.testimonial_text}}</p>
         </div>
     </div>
 

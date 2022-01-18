@@ -1,7 +1,5 @@
-function dropdown(el) {
-    $(el).toggleClass("visible");
-};
-
-$(".dropdown").on("click", function() {
-    dropdown($(this).children('ul'));
+$(".dropdown").hover(function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+  }, function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
 });

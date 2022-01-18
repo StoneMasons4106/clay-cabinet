@@ -20,3 +20,16 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Content(models.Model):
+    name = models.CharField(max_length=254)
+    gallery_title = models.CharField(max_length=254)
+    gallery_text = models.CharField(max_length=254)
+    video_title = models.CharField(max_length=254)
+    video_text = models.CharField(max_length=254)
+    testimonial_title = models.CharField(max_length=254)
+    testimonial_text = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name

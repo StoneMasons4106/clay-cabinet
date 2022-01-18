@@ -1,7 +1,5 @@
-from turtle import home
 from django.shortcuts import render
-from django.test import TestCase
-from .models import HomePagePicture, Testimonial
+from .models import HomePagePicture, Testimonial, Content
 from .youtube_feed import get_videos
 
 # Create your views here.
@@ -11,6 +9,7 @@ def index(request):
 
     home_page_pictures = HomePagePicture.objects.values()
     testimonials = Testimonial.objects.values()
+    content = Content.objects.values()[0]
 
     youtube_videos = get_videos()
 
@@ -19,6 +18,7 @@ def index(request):
         'home_page_pictures': home_page_pictures,
         'youtube_feed': youtube_videos,
         'testimonials': testimonials,
+        'content': content,
     }
 
     return render(request, 'home/index.html', context)
