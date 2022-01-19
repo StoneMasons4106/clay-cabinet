@@ -1,1 +1,1 @@
-web: gunicorn vyerose.wsgi:application
+web: gunicorn claycabinet.wsgi:application
