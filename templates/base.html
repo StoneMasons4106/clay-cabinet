@@ -57,7 +57,9 @@
             <li><a href="#">Contact</a></li>
             <li class="dropdown products-container"><a href="#">Products <i class="bi bi-chevron-down"></i></a>
               <ul class="dropdown-menu products-menu-small">
-                <li><a href="#" class="dropdown-item black">Add Product</a></li>
+                {% if request.user.is_superuser %}
+                  <li><a href="#" class="dropdown-item black">Add Product</a></li>
+                {% endif %}
                 <li><a href="#" class="dropdown-item black">Category One</a></li>
                 <li><a href="#" class="dropdown-item black">Category Two</a></li>
                 <li><a href="#" class="dropdown-item black">View All Products</a></li>
@@ -100,7 +102,9 @@
         <li class="dropdown products-container">
           <a href="#">Products <i class="bi bi-chevron-down"></i></a>
           <ul class="dropdown-menu products-menu-large">
-            <li><a href="#" class="dropdown-item">Add Product</a></li>
+            {% if request.user.is_superuser %}
+              <li><a href="#" class="dropdown-item">Add Product</a></li>
+            {% endif %}
             <li><a href="#" class="dropdown-item">Category One</a></li>
             <li><a href="#" class="dropdown-item">Category Two</a></li>
             <li><a href="#" class="dropdown-item">View All Products</a></li>
