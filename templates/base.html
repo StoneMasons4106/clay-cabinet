@@ -52,6 +52,7 @@
                 <li><a href="{% url 'home' %}#gallery" class="dropdown-item black">Gallery</a></li>
                 <li><a href="{% url 'home' %}#videos" class="dropdown-item black">Videos</a></li>
                 <li><a href="{% url 'home' %}#testimonials" class="dropdown-item black">Testimonials</a></li>
+                <li><a href="{% url 'home' %}#social-links" class="dropdown-item black">Social Media</a></li>
               </ul>
             </li>
             <li><a href="#">Contact</a></li>
@@ -96,6 +97,7 @@
             <li><a href="{% url 'home' %}#gallery" class="dropdown-item black">Gallery</a></li>
             <li><a href="{% url 'home' %}#videos" class="dropdown-item black">Videos</a></li>
             <li><a href="{% url 'home' %}#testimonials" class="dropdown-item black">Testimonials</a></li>
+            <li><a href="{% url 'home' %}#social-links" class="dropdown-item black">Social Media</a></li>
           </ul>
         </li>
         <li><a href="#">Contact</a></li>
@@ -143,11 +145,10 @@
           <p class="mb-1">&copy; Copyright ClayCabinet. All Rights Reserved</p>
           
         </div>
-        <div class="col-sm-6 social text-md-end">
-          <a href="#"><span class="bi bi-youtube"></span></a>
-          <a href="#"><span class="bi bi-facebook"></span></a>
-          <a href="#"><span class="bi bi-instagram"></span></a>
-          <a href="#"><span class="bi bi-linkedin"></span></a>
+        <div class="col-sm-6 social text-md-end" id="social-links">
+          <a href="https://www.youtube.com/channel/{{youtube_channel_id}}/" target="_blank" rel="noopener noreferrer"><span class="bi bi-youtube youtube"></span></a>
+          <a href="https://www.facebook.com/jessi.gala.79/" target="_blank" rel="noopener noreferrer"><span class="bi bi-facebook facebook"></span></a>
+          <a href="https://www.instagram.com/clay.cabinet/" target="_blank" rel="noopener noreferrer"><span class="bi bi-instagram instagram"></span></a>
         </div>
       </div>
     </div>

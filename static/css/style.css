@@ -84,6 +84,19 @@
     padding-top: 60px;
 }
 
+.facebook:hover {
+    color:#3333ff;
+}
+
+.instagram:hover {
+    color:#ff66ff;
+}
+
+.youtube:hover {
+    color:red;
+}
+
+
 /* Homepage home/templates/home/index.html */
 
 h1 b {
@@ -116,6 +129,10 @@ h1 b {
 
 .testimonial-wrap {
     background-color: #a9d193;
+}
+
+.gallery-image {
+    aspect-ratio: 1/1 !important;
 }
 
 

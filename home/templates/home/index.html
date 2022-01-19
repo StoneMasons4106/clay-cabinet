@@ -25,9 +25,9 @@
             <span>{{ image.description }}</span>
             </div>
             {% if image.image|length %}
-            <img class="img-fluid" src="{{MEDIA_URL}}{{image.image}}">
+            <img class="img-fluid gallery-image" src="{{MEDIA_URL}}{{image.image}}">
             {% else %}
-            <img class="img-fluid" src="{{MEDIA_URL}}noimage.png">
+            <img class="img-fluid gallery-image" src="{{MEDIA_URL}}noimage.png">
             {% endif %}
         </a>
         </div>
