@@ -40,7 +40,7 @@ $(document).ready(function(){
         $(this).addClass("button-loading");
         setTimeout(function(){
           $("#contact-button").addClass("success");
-        }, 1500);
+        }, 2500);
       } else {
         //do nothing
       };

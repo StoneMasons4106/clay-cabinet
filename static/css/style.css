@@ -241,11 +241,19 @@ textarea:invalid, textarea:invalid ~ .validation {
     margin-left: 43.5%;
 }
 
+.button-loading:hover {
+    background-color: transparent;
+}
+
 .success {
     border: none;
     position: relative;
-    background-color: #fff;
+    background-color: #d6f9ff;
     animation: bounce .3s ease-in;
+}
+
+.success:hover {
+    background-color: #d6f9ff;
 }
 
 @keyframes rotate {
