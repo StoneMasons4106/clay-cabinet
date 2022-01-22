@@ -1,0 +1,11 @@
+Hey Jessi!
+
+{{first_name}} {{last_name}} filled out the contact form on your website.
+
+Here are the details:
+
+Email: {{user_email}}
+
+Subject: {{subject}}
+
+Message: {{message}}

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<main id="main">
+
+<section class="section pb-5 contact-section">
+    <div class="container">
+
+    <div class="row mb-5 align-items-end">
+        <div class="col-md-6" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p class="mb-0">{{content.contact_blurb}}
+        </p>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-up">
+
+        <form method="post" role="form" name="contact-form" class="php-email-form">
+            {% csrf_token %}
+            <div class="row gy-3">
+                <div class="col-md-6 form-group">
+                    <div class="wrapper">
+                        <input type="text" name="first-name" class="form-control" id="name" placeholder="First Name" required>
+                        <div class="validation">*</div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <div class="wrapper">
+                        <input type="text" name="last-name" class="form-control" id="name" placeholder="Last Name" required>
+                        <div class="validation">*</div>
+                    </div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <div class="wrapper">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                        <div class="validation">*</div>
+                    </div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <div class="wrapper">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                        <div class="validation">*</div>
+                    </div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <div class="wrapper">
+                        <textarea class="form-control" name="message" cols="30" rows="10" placeholder="Message" required></textarea>
+                        <div class="validation">*</div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 my-3">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+
+                <div class="col-md-12 mt-0 form-group button-container">
+                    <a class="readmore d-block w-100 contact-button" id="contact-button">Send Message</a>
+                </div>
+            </div>
+
+        </form>
+
+        </div>
+
+        <div class="col-md-4 ml-auto order-2" data-aos="fade-up">
+        <ul class="list-unstyled">
+            <li class="mb-3">
+            <strong class="d-block mb-1">Address</strong>
+            <span>{{content.address}}</span>
+            </li>
+            <li class="mb-3">
+            <strong class="d-block mb-1">Phone</strong>
+            <span><a class="contact-info" href="tel:{{content.phone}}">{{content.phone}}</a></span>
+            </li>
+            <li class="mb-3">
+            <strong class="d-block mb-1">Email</strong>
+            <span><a class="contact-info" href="mailto:{{content.email}}">{{content.email}}</a></span>
+            </li>
+        </ul>
+        </div>
+
+    </div>
+
+    <div class="row google-maps-row">
+        <div class="col" data-aos="fade-up">
+            <iframe src="{{content.google_maps_link}}" width="100%" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        </div>
+    </div>
+
+    </div>
+
+</section>
+
+</main><!-- End #main -->
+
+{% endblock %}

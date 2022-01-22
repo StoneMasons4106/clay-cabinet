@@ -85,15 +85,21 @@
 }
 
 .facebook:hover {
-    color:#3333ff;
+    background-color:#3b5998;
 }
 
 .instagram:hover {
-    color:#ff66ff;
+    background-color:#e1306c;
 }
 
 .youtube:hover {
-    color:red;
+    background-color:red;
+}
+
+.facebook span:hover,
+.youtube span:hover,
+.instagram span:hover {
+    color: white;
 }
 
 
@@ -135,8 +141,146 @@ h1 b {
     aspect-ratio: 1/1 !important;
 }
 
+.fancybox:hover {
+    cursor: pointer;
+}
+
+
+/* Contact contact/templates/contact/contact.html */
+
+.contact-section {
+    background-color: #d1a9b1;
+}
+
+.google-maps-row {
+    margin-top: 32px;
+}
+
+.contact-info {
+    text-decoration: none;
+    color: #0d1e2d;
+}
+
+.contact-info:hover {
+    color: #0d1e2d;
+}
+
+.form-control,
+.contact-button {
+    border-radius: 4px;
+}
+
+.contact-button {
+    width: 50% !important;
+    font-size: 16px;
+    margin-left: 25%;
+    background-color: white;
+    text-align: center;
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+
+
+/* Form Validation */
+
+.wrapper {
+    position: relative;
+    display: flex;
+}
+
+.validation {
+    position: absolute;
+    top: .55rem;
+    right: .7rem;
+    opacity: 0;
+    color: #fd4444;
+    font-size: 28px;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(8px);
+    }
+    75% {
+        transform: translateX(-8px);
+    }
+}
+
+input:valid,
+textarea:valid {
+    border-color: #55d688;
+}
+
+input:invalid,
+textarea:invalid {
+    border-color: #fd4444;
+}
+
+input:invalid ~ .validation,
+textarea:invalid ~ .validation {
+    opacity: 1;
+}
+
+input:invalid, input:invalid ~ .validation,
+textarea:invalid, textarea:invalid ~ .validation {
+    animation: shake 0.1635s 0s 3;
+}
+
+.button-loading {
+    font-size: 0;
+    width: 65px !important;
+    height: 65px !important;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    border-left-color: transparent;
+    animation: rotate 1.4s ease 0.5s infinite;
+    background-color: transparent;
+    margin-left: 43.5%;
+}
+
+.success {
+    border: none;
+    position: relative;
+    background-color: #fff;
+    animation: bounce .3s ease-in;
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    0%{
+        transform: scale(0.9);
+    }
+}
+
+.success:before {
+    content: '';
+    position: absolute;
+    background: url(heart.svg) no-repeat;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    top: 15px;
+}
+
 
 /* Media Queries */
+
+@media screen and (max-width: 620px) {
+    .burger {
+        margin-right: 10px;
+    }
+}
 
 @media screen and (max-width: 600px) {
     .logo {
