@@ -3,6 +3,7 @@ from .models import Content
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
+from hubspot_api_calls import create_new_contact, create_new_note, associate_note_with_contact
 
 # Create your views here.
 
@@ -36,6 +37,9 @@ def contact(request):
         )
 
         contact_notification_message_wrapper.send()
+        contact_id = create_new_contact(user_email, first_name, last_name)
+        note_id = create_new_note(message)
+        associate_note_with_contact(contact_id, note_id)
 
     context = {
         'page': 'contact',
