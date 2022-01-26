@@ -34,3 +34,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Content(models.Model):
+
+    name = models.CharField(max_length=254)
+    products_blurb = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.name

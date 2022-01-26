@@ -1,4 +1,5 @@
 {% load static %}
+{% load product_tools %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,14 +65,19 @@
             {% else %}
             <li><a href="{% url 'contact' %}">Contact</a></li>
             {% endif %}
+            {% if page == 'products' %}
+            <li class="dropdown products-container active"><a href="#">Products <i class="bi bi-chevron-down"></i></a>
+            {% else %}
             <li class="dropdown products-container"><a href="#">Products <i class="bi bi-chevron-down"></i></a>
+            {% endif %}
               <ul class="dropdown-menu products-menu-small">
                 {% if request.user.is_superuser %}
                   <li><a href="#" class="dropdown-item black">Add Product</a></li>
                 {% endif %}
-                <li><a href="#" class="dropdown-item black">Category One</a></li>
-                <li><a href="#" class="dropdown-item black">Category Two</a></li>
-                <li><a href="#" class="dropdown-item black">View All Products</a></li>
+                {% for category in all_categories|categories %}
+                  <li><a href="#" class="dropdown-item black">{{ category.friendly_name }}</a></li>
+                {% endfor %}
+                <li><a href="{% url 'products' %}" class="dropdown-item black">View All Products</a></li>
               </ul>
             </li>
             <li class="dropdown"><a href="#"><span>My Account</span> <i class="bi bi-chevron-down"></i></a>
@@ -117,15 +123,19 @@
         {% else %}
         <li><a href="{% url 'contact' %}">Contact</a></li>
         {% endif %}
-        <li class="dropdown products-container">
-          <a href="#">Products <i class="bi bi-chevron-down"></i></a>
+        {% if page == 'products' %}
+        <li class="dropdown products-container active"><a href="#">Products <i class="bi bi-chevron-down"></i></a>
+        {% else %}
+        <li class="dropdown products-container"><a href="#">Products <i class="bi bi-chevron-down"></i></a>
+        {% endif %}
           <ul class="dropdown-menu products-menu-large">
             {% if request.user.is_superuser %}
               <li><a href="#" class="dropdown-item">Add Product</a></li>
             {% endif %}
-            <li><a href="#" class="dropdown-item">Category One</a></li>
-            <li><a href="#" class="dropdown-item">Category Two</a></li>
-            <li><a href="#" class="dropdown-item">View All Products</a></li>
+            {% for category in all_categories|categories %}
+              <li><a href="#" class="dropdown-item">{{ category.friendly_name }}</a></li>
+            {% endfor %}
+            <li><a href="{% url 'products' %}" class="dropdown-item">View All Products</a></li>
           </ul>
         </li>
         <li class="dropdown"><a href="#"><span>My Account</span> <i class="bi bi-chevron-down"></i></a>

@@ -181,6 +181,13 @@ h1 b {
 }
 
 
+/* Products products/templates/products/products.html */
+
+.products-section {
+    background-color: #a9d193;
+}
+
+
 /* Form Validation */
 
 .wrapper {
