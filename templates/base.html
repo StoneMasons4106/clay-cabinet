@@ -19,6 +19,9 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
 
+  <!--Font Awesome-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
   <!-- Vendor CSS Files -->
   <link href="{% static 'myportfolio/assets/vendor/aos/aos.css' %}" rel="stylesheet">
   <link href="{% static 'myportfolio/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -75,7 +78,7 @@
                   <li><a href="#" class="dropdown-item black">Add Product</a></li>
                 {% endif %}
                 {% for category in all_categories|categories %}
-                  <li><a href="#" class="dropdown-item black">{{ category.friendly_name }}</a></li>
+                  <li><a href="{% url 'products' %}?category={{ category.name }}" class="dropdown-item black">{{ category.friendly_name }}</a></li>
                 {% endfor %}
                 <li><a href="{% url 'products' %}" class="dropdown-item black">View All Products</a></li>
               </ul>
@@ -133,7 +136,7 @@
               <li><a href="#" class="dropdown-item">Add Product</a></li>
             {% endif %}
             {% for category in all_categories|categories %}
-              <li><a href="#" class="dropdown-item">{{ category.friendly_name }}</a></li>
+              <li><a href="{% url 'products' %}?category={{ category.name }}" class="dropdown-item">{{ category.friendly_name }}</a></li>
             {% endfor %}
             <li><a href="{% url 'products' %}" class="dropdown-item">View All Products</a></li>
           </ul>
@@ -164,7 +167,7 @@
   {% endblock %}
 
   <!-- ======= Footer ======= -->
-  <footer class="footer" role="contentinfo">
+  <footer id="footer" class="footer" role="contentinfo">
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
@@ -196,6 +199,7 @@
 
   <!-- My JS -->
   <script src="{% static 'js/dropdown.js' '%}"></script>
+  <script src="{% static 'js/footer_position.js' '%}"></script>
   <script src="{% static 'js/contactForm.js' %}"></script>
 
 </body>

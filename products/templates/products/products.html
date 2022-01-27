@@ -7,72 +7,36 @@
 
 <section class="section products-section">
     <div class="container">
-    <div class="row mb-4 align-items-center">
-        <div class="col-md-6" data-aos="fade-up">
-
-        <h2>Products</h2>
-        <p>{{content.products_blurb}}</p>
-
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-6" data-aos="fade-up">
+                <h2>Products</h2>
+                <p>{{content.products_blurb}}</p>
+            </div>
         </div>
-
-    </div>
     </div>
 
     <div class="site-section pb-0 services">
-    <div class="container">
-
-        <div class="row">
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-            <i class="bi bi-card-checklist"></i>
-            <h4 class="h4 mb-2">Web Design</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-            <ul class="list-unstyled list-line">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-            <li>Non pariatur nisi</li>
-            <li>Magnam soluta quod</li>
-            <li>Lorem ipsum dolor</li>
-            <li>Cumque quae aliquam</li>
-            </ul>
+        <div class="container">
+            <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+                {% for product in products %}
+                <div class="item col-sm-6 col-md-4 col-lg-4 mb-4">
+                    <a href="#" class="item-wrap fancybox">
+                        <div class="work-info">
+                            <h3>{{ product.name }}</h3>
+                            <span>${{ product.price }}</span>
+                            <br>
+                            <span><i class="fas fa-tags mr-1"></i> {{ product.category.friendly_name }}</span>
+                        </div>
+                        {% if product.image|length %}
+                        <img class="img-fluid gallery-image" src="{{MEDIA_URL}}{{image.image}}">
+                        {% else %}
+                        <img class="img-fluid gallery-image" src="{{MEDIA_URL}}noimage.png">
+                        {% endif %}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-binoculars"></i>
-            <h4 class="h4 mb-2">Mobile Applications</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-            <ul class="list-unstyled list-line">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-            <li>Non pariatur nisi</li>
-            <li>Magnam soluta quod</li>
-            <li>Lorem ipsum dolor</li>
-            <li>Cumque quae aliquam</li>
-            </ul>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-            <i class="bi bi-brightness-high"></i>
-            <h4 class="h4 mb-2">Graphic Design</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-            <ul class="list-unstyled list-line">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-            <li>Non pariatur nisi</li>
-            <li>Magnam soluta quod</li>
-            <li>Lorem ipsum dolor</li>
-            <li>Cumque quae aliquam</li>
-            </ul>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-calendar4-week"></i>
-            <h4 class="h4 mb-2">SEO</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-            <ul class="list-unstyled list-line">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-            <li>Non pariatur nisi</li>
-            <li>Magnam soluta quod</li>
-            <li>Lorem ipsum dolor</li>
-            <li>Cumque quae aliquam</li>
-            </ul>
-        </div>
-        </div>
-    </div>
     </div>
 </section>
 

@@ -116,7 +116,9 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   font-size: 20px;
   margin-bottom: 0;
 }
-.item .item-wrap > .work-info span {
+.item .item-wrap > .work-info span,
+.item .item-wrap > .work-info i,
+.item .item-wrap > .work-info a {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.2rem;

@@ -187,6 +187,10 @@ h1 b {
     background-color: #a9d193;
 }
 
+br {
+    height: 0px;
+}
+
 
 /* Form Validation */
 
