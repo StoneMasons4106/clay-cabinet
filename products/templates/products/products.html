@@ -59,15 +59,33 @@
                         <ol class="carousel-indicators" id="product-carousel-indicators"></ol>
                         <div class="carousel-inner" role="listbox">
                             {% if product.image %}
-                                <img class="card-img-top img-fluid carousel-item active" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                <img class="card-img-top img-fluid gallery-image carousel-item active" src="{{ product.image.url }}" alt="{{ product.name }}">
                             {% else %}
-                                <img class="card-img-top img-fluid carousel-item active" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                <img class="card-img-top img-fluid gallery-image carousel-item active" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             {% endif %}
                             {% if product.image_two %}
-                                <img class="card-img-top img-fluid carousel-item" src="{{ product.image_two.url }}" alt="{{ product.name }}">
+                                <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_two.url }}" alt="{{ product.name }}">
                             {% endif %}
                             {% if product.image_three %}
-                                <img class="card-img-top img-fluid carousel-item" src="{{ product.image_three.url }}" alt="{{ product.name }}">
+                                <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_three.url }}" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.image_four %}
+                                <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_four.url }}" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.image_five %}
+                                <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_five.url }}" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.image_six %}
+                                <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_six.url }}" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.image_seven %}
+                                <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_seven.url }}" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.image_eight %}
+                                <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_eight.url }}" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.image_nine %}
+                                <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_nine.url }}" alt="{{ product.name }}">
                             {% endif %}
                         </div>
                         
