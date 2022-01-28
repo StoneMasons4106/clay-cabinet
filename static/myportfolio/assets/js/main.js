@@ -108,4 +108,16 @@
     })
   });
 
+  /**
+   * Product Carousel Indicators
+   */
+ let productCarouselIndicators = select("#product-carousel-indicators")
+ let productCarouselItems = select('#productCarousel .carousel-item', true)
+
+ productCarouselItems.forEach((item, index) => {
+  (index === 0) ?
+  productCarouselIndicators.innerHTML += "<li data-bs-target='#productCarousel' data-bs-slide-to='" + index + "' class='active'></li>":
+    productCarouselIndicators.innerHTML += "<li data-bs-target='#productCarousel' data-bs-slide-to='" + index + "'></li>"
+});
+
 })()
