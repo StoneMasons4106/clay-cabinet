@@ -4,6 +4,8 @@ $('.product-item').on("click", function() {
    var productCarouselIndicators = $("#" + productCarouselIndicatorsValue).find('#product-carousel-indicators');
    var productCarouselItems = $("#" + productCarouselIndicatorsValue).find('.carousel-item');
 
+   productCarouselIndicators.empty();
+
    for (i in productCarouselItems) {
       if (i == 0) {
         $("<li data-bs-target='#productCarousel' data-bs-slide-to='" + i + "' class='active'></li>").appendTo(productCarouselIndicators);
