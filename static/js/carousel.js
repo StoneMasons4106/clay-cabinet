@@ -5,10 +5,12 @@ $('.product-item').on("click", function() {
    var productCarouselItems = $("#" + productCarouselIndicatorsValue).find('.carousel-item');
 
    for (i in productCarouselItems) {
-    if (i == 0) {
-      productCarouselIndicators.html("<li data-bs-target='#productCarousel' data-bs-slide-to='" + i + "' class='active'></li>");
-    } else {
-      productCarouselIndicators.html("<li data-bs-target='#productCarousel' data-bs-slide-to='" + i + "'></li>");
-    }
+      if (i == 0) {
+        $("<li data-bs-target='#productCarousel' data-bs-slide-to='" + i + "' class='active'></li>").appendTo(productCarouselIndicators);
+      } else if (parseInt(i)) {
+        $("<li data-bs-target='#productCarousel' data-bs-slide-to='" + i + "'></li>").appendTo(productCarouselIndicators);
+      } else {
+      //pass
+    };
   };
 });
