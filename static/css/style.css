@@ -209,6 +209,33 @@ br {
     font-size: 24px;
 }
 
+.carousel-indicators li {
+    border-radius: 50%;
+    width: 15px !important;
+    height: 15px !important;
+}
+
+.carousel-indicators .active {
+    background-color: #006fbe;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    border-radius: 50px;
+    width: 36px;
+    height: 36px;
+    background:rgba(255, 255, 255, 0.2);
+    color:rgba(255, 255, 255, 0.5);
+}
+
+.bi-chevron-left::before {
+    content: "\f284";
+}
+
+.bi-chevron-right::before {
+    content: "\f285";
+}
+
 
 /* Form Validation */
 

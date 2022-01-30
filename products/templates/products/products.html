@@ -11,6 +11,18 @@
             <div class="col-md-6" data-aos="fade-up">
                 <h2>Products</h2>
                 <p>{{content.products_blurb}}</p>
+                <form method="GET" action="{% url 'products' %}">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black" type="text" name="query" placeholder="What are you looking for today?">
+                        <div class="input-group-append">
+                            <button id="search-button" class="form-control btn btn-blue border border-black" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -90,11 +102,11 @@
                         </div>
                         
                         <a class="carousel-control-prev" href="#productCarousel" role="button" data-bs-slide="prev" onclick="$('#productCarousel-{{product.id}}').carousel('prev')">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
                         </a>
                 
                         <a class="carousel-control-next" href="#productCarousel" role="button" data-bs-slide="next" onclick="$('#productCarousel-{{product.id}}').carousel('next')">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
                         </a>
                     </div>
                 </div>
@@ -148,7 +160,7 @@
                                 </div>
     
                                 <div class="col{% if s %}-12 mt-2{% endif %}">
-                                    <input type="submit" class="btn btn-success add-to-cart" value="Add to Cart">
+                                    <button type="submit" class="btn btn-success add-to-cart"><i class='fas fa-cart-plus'></i> Add to Cart</button>
                                 </div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             </div>
