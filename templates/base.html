@@ -8,13 +8,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MyPortfolio Bootstrap Template - Index</title>
+  <title>ClayCabinet</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'myportfolio/assets/img/favicon.png' %}" rel="icon">
-  <link href="{% static 'myportfolio/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="{{MEDIA_URL}}claycabinetlogo.png" rel="icon">
+  <link href="{{MEDIA_URL}}claycabinetlogo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
@@ -60,7 +60,7 @@
                 <li><a href="{% url 'home' %}#gallery" class="dropdown-item black">Gallery</a></li>
                 <li><a href="{% url 'home' %}#videos" class="dropdown-item black">Videos</a></li>
                 <li><a href="{% url 'home' %}#testimonials" class="dropdown-item black">Testimonials</a></li>
-                <li><a href="{% url 'home' %}#social-links" class="dropdown-item black">Social Media</a></li>
+                <li><a href="#social-links" class="dropdown-item black">Social Media</a></li>
               </ul>
             </li>
             {% if page == 'contact' %}
@@ -118,7 +118,7 @@
             <li><a href="{% url 'home' %}#gallery" class="dropdown-item black">Gallery</a></li>
             <li><a href="{% url 'home' %}#videos" class="dropdown-item black">Videos</a></li>
             <li><a href="{% url 'home' %}#testimonials" class="dropdown-item black">Testimonials</a></li>
-            <li><a href="{% url 'home' %}#social-links" class="dropdown-item black">Social Media</a></li>
+            <li><a href="#social-links" class="dropdown-item black">Social Media</a></li>
           </ul>
         </li>
         {% if page == 'contact' %}

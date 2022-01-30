@@ -5,13 +5,13 @@
 
 <main id="main">
 
-<section class="section products-section">
+<section class="section products-section" id="products-section">
     <div class="container">
         <div class="row mb-4 align-items-center">
             <div class="col-md-6" data-aos="fade-up">
                 <h2>Products</h2>
                 <p>{{content.products_blurb}}</p>
-                <form method="GET" action="{% url 'products' %}">
+                <form id="search-products" method="GET" action="{% url 'products' %}#products-section">
                     <div class="input-group w-100">
                         <input class="form-control border border-black" type="text" name="query" placeholder="What are you looking for today?">
                         <div class="input-group-append">
@@ -30,23 +30,30 @@
     <div class="site-section pb-0 services">
         <div class="container">
             <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-                {% for product in products %}
-                <div class="product-item item col-sm-6 col-md-4 col-lg-4 mb-4">
-                    <a id="product" class="item-wrap fancybox" data-bs-toggle="modal" data-bs-target="#product-modal-{{product.id}}">
-                        <div class="work-info">
-                            <h3>{{ product.name }}</h3>
-                            <span>${{ product.price }}</span>
-                            <br>
-                            <span><i class="fas fa-tags mr-1"></i> {{ product.category.friendly_name }}</span>
-                        </div>
-                        {% if product.image|length %}
-                        <img class="img-fluid gallery-image" src="{{MEDIA_URL}}{{product.image}}">
-                        {% else %}
-                        <img class="img-fluid gallery-image" src="{{MEDIA_URL}}noimage.png">
-                        {% endif %}
-                    </a>
-                </div>
-                {% endfor %}
+                {% if products|length %}
+                    {% for product in products %}
+                    <div class="product-item item col-sm-6 col-md-4 col-lg-4 mb-4">
+                        <a id="product" class="item-wrap fancybox" data-bs-toggle="modal" data-bs-target="#product-modal-{{product.id}}">
+                            <div class="work-info">
+                                <h3>{{ product.name }}</h3>
+                                <span>${{ product.price }}</span>
+                                <br>
+                                <span><i class="fas fa-tags mr-1"></i> {{ product.category.friendly_name }}</span>
+                            </div>
+                            {% if product.image|length %}
+                            <img class="img-fluid gallery-image" src="{{MEDIA_URL}}{{product.image}}">
+                            {% else %}
+                            <img class="img-fluid gallery-image" src="{{MEDIA_URL}}noimage.png">
+                            {% endif %}
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="product-item item col-sm-6 col-md-4 col-lg-4 mb-4">
+                        <p class="no-results-text">Oops! We couldn't find what you're looking for...</p>
+                        <img class="question-picture" src="{{MEDIA_URL}}kawaii_otter.png" alt="We could not find anything that matched your search, try again.">
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
