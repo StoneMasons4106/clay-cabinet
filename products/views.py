@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Content, Product, Category
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -34,3 +35,13 @@ def all_products(request):
     }
 
     return render(request, 'products/products.html', context)
+
+
+@login_required
+def delete_product(request, product_id):
+    if not request.user.is_superuser:
+        return redirect(reverse('home'))
+
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    return redirect(reverse('products'))
