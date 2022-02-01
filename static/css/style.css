@@ -183,7 +183,8 @@ h1 b {
 
 /* Products products/templates/products/products.html */
 
-.products-section {
+.products-section,
+.add-products-section {
     background-color: #a9d193;
 }
 

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<main id="main">
+
+<section class="section add-products-section" id="add-products-section">
+    <div class="container">
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-6" data-aos="fade-up">
+                <h2>Add a Product</h2>
+            </div>
+        </div>
+        <div class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+            <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="wrapper">
+                        {% if field.name != 'image' or field.name != 'image_two' or field.name != 'image_three' or field.name != 'image_four' or field.name != 'image_five' or field.name != 'image_six' or field.name != 'image_seven' or field.name != 'image_eight' or field.name != 'image_nine' %}
+                            {{ field | as_crispy_field }}
+                            <div class="validation">*</div>
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="text-right">
+                    <a class="btn btn-secondary" href="{% url 'products' %}">Cancel</a>
+                    <button class="btn btn-primary" type="submit">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+</main><!-- End #main -->
+
+{% endblock %}

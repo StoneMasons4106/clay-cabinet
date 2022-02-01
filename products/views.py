@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Content, Product, Category
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from .forms import ProductForm
 
 # Create your views here.
 
@@ -35,6 +36,29 @@ def all_products(request):
     }
 
     return render(request, 'products/products.html', context)
+
+
+@login_required
+def add_product(request):
+    if not request.user.is_superuser:
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('products'))
+        else:
+            pass
+    else:
+        form = ProductForm()
+    
+    context = {
+        'page': 'products',
+        'form': form,
+    }
+
+    return render(request, 'products/add_product.html', context)
 
 
 @login_required

@@ -75,7 +75,7 @@
             {% endif %}
               <ul class="dropdown-menu products-menu-small">
                 {% if request.user.is_superuser %}
-                  <li><a href="#" class="dropdown-item black">Add Product</a></li>
+                  <li><a href="{% url 'add_product' %}" class="dropdown-item black">Add Product</a></li>
                 {% endif %}
                 {% for category in all_categories|categories %}
                   <li><a href="{% url 'products' %}?category={{ category.name }}" class="dropdown-item black">{{ category.friendly_name }}</a></li>
@@ -133,7 +133,7 @@
         {% endif %}
           <ul class="dropdown-menu products-menu-large">
             {% if request.user.is_superuser %}
-              <li><a href="#" class="dropdown-item">Add Product</a></li>
+              <li><a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a></li>
             {% endif %}
             {% for category in all_categories|categories %}
               <li><a href="{% url 'products' %}?category={{ category.name }}" class="dropdown-item">{{ category.friendly_name }}</a></li>
