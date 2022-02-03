@@ -267,6 +267,14 @@ br {
     background-color: #f5be6b;
 }
 
+.add-product-field {
+    margin-bottom: 15px;
+}
+
+.btn-file {
+    padding-left: 0px;
+}
+
 
 /* Form Validation */
 

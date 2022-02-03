@@ -12,24 +12,28 @@
                 <h2>Add a Product</h2>
             </div>
         </div>
-        <div class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-            <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% for field in form %}
-                    <div class="wrapper">
-                        {% if field.name != 'image' or field.name != 'image_two' or field.name != 'image_three' or field.name != 'image_four' or field.name != 'image_five' or field.name != 'image_six' or field.name != 'image_seven' or field.name != 'image_eight' or field.name != 'image_nine' %}
+        <div class="row no-gutter gy-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-6 form-group">
+                <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if 'image' in field.name %}
                             {{ field | as_crispy_field }}
-                            <div class="validation">*</div>
                         {% else %}
-                            {{ field }}
+                            <div class="wrapper">
+                                {{ field }}
+                                {% if field.name != 'category' %}
+                                    <div class="validation">*</div>
+                                {% endif %}
+                            </div>
                         {% endif %}
+                    {% endfor %}
+                    <div class="text-right">
+                        <a class="btn btn-secondary" href="{% url 'products' %}">Cancel</a>
+                        <button class="btn btn-primary" type="submit">Add Product</button>
                     </div>
-                {% endfor %}
-                <div class="text-right">
-                    <a class="btn btn-secondary" href="{% url 'products' %}">Cancel</a>
-                    <button class="btn btn-primary" type="submit">Add Product</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </section>
