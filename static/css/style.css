@@ -181,7 +181,7 @@ h1 b {
 }
 
 
-/* Products products/templates/products/products.html */
+/* Products products/templates/products/products.html, add_product.html */
 
 .products-section,
 .add-products-section {
@@ -196,7 +196,8 @@ br {
     background-color: #e9bacc;
 }
 
-.edit-product-button {
+.edit-product-button,
+.cancel-edit-product {
     margin-right: 10px;
 }
 
@@ -267,12 +268,18 @@ br {
     background-color: #f5be6b;
 }
 
-.add-product-field {
-    margin-bottom: 15px;
+.add-product-field,
+.edit-product-field {
+    margin-bottom: 15px !important;
 }
 
 .btn-file {
     padding-left: 0px;
+}
+
+.add-product-button {
+    font-size: 20px;
+    margin-top: 10px;
 }
 
 

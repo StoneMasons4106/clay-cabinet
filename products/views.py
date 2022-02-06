@@ -62,6 +62,23 @@ def add_product(request):
 
 
 @login_required
+def edit_product(request, product_id):
+    if not request.user.is_superuser:
+        return redirect(reverse('home'))
+    
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=product_id)
+        product.name = request.POST["product-name"]
+        product.price = request.POST["price"]
+        product.category = Category(pk=request.POST["category"])
+        product.description = request.POST["product-description"]
+        product.save()
+        return redirect(reverse('products'))
+
+    return redirect(reverse('products'))
+
+
+@login_required
 def delete_product(request, product_id):
     if not request.user.is_superuser:
         return redirect(reverse('home'))
