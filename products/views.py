@@ -67,11 +67,13 @@ def edit_product(request, product_id):
         return redirect(reverse('home'))
     
     if request.method == 'POST':
+        print(request.POST)
         product = get_object_or_404(Product, pk=product_id)
         product.name = request.POST["product-name"]
         product.price = request.POST["price"]
         product.category = Category(pk=request.POST["category"])
         product.description = request.POST["product-description"]
+        product.inventory = request.POST["inventory"]
         product.save()
         return redirect(reverse('products'))
 
