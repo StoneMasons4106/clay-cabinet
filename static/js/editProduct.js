@@ -1,5 +1,4 @@
 $('.edit-product-button').on('click', function() {
-    count = 0;
     var csrf = $(this).closest('.product-details-container').find('input[name="csrfmiddlewaretoken"]').attr("value");
     var productId = $(this).closest('.modal').attr('aria-labelledby').replace('Product Modal ','');
     var productName = $(this).closest('.product-details-container').find('.product-name-secondary');
@@ -23,11 +22,9 @@ $('.edit-product-button').on('click', function() {
         } else if ($(this).children('a').text() == 'View All Products') {
             //pass
         } else if ($(this).children('a').text() == productCategory) {
-            count = count + 1;
-            $('<option value="'+ count +'" selected>' + $(this).children('a').text() + '</option>').appendTo(categoryEditProductField);
+            $('<option value="'+ $(this).children('a').text() +'" selected>' + $(this).children('a').text() + '</option>').appendTo(categoryEditProductField);
         } else {
-            count = count + 1;
-            $('<option value="'+ count +'">' + $(this).children('a').text() + '</option>').appendTo(categoryEditProductField);
+            $('<option value="'+ $(this).children('a').text() +'">' + $(this).children('a').text() + '</option>').appendTo(categoryEditProductField);
         }
     });
     $('.cancel-edit-product').on('click', function() {
