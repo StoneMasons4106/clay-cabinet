@@ -283,6 +283,41 @@ br {
 }
 
 
+/* Accounts templates/allauth/account/*, templates/allauth/socialaccount/* */
+
+.accounts-section {
+    background-color:#f9eeae;
+}
+
+.accounts-section input {
+    margin-bottom: 15px;
+}
+
+.accounts-section input[name="login"],
+.accounts-section input[name="password"],
+.accounts-section input[name="email"],
+.accounts-section input[name="email2"],
+.accounts-section input[name="username"],
+.accounts-section input[name="password1"],
+.accounts-section input[name="password2"] {
+    border-radius: 4px;
+    width: 100%;
+}
+
+.fa-eye,
+.fa-eye-slash {
+    cursor: pointer;
+    width: 1.2em;
+    position: absolute;
+    top: .55rem;
+    right: 1.5rem;
+}
+
+.login-button {
+    font-size: 20px;
+}
+
+
 /* Form Validation */
 
 .wrapper {
@@ -326,7 +361,7 @@ textarea:invalid ~ .validation {
     opacity: 1;
 }
 
-input:invalid, input:invalid ~ .validation,
+input:invalid, input:invalid ~ .validation, input:invalid ~ .fa-eye-slash,
 textarea:invalid, textarea:invalid ~ .validation {
     animation: shake 0.1635s 0s 3;
 }

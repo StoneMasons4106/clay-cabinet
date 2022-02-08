@@ -74,7 +74,6 @@ def edit_product(request, product_id):
         product.description = request.POST["product-description"]
         product.inventory = request.POST["inventory"]
         product.save()
-        return redirect(reverse('products'))
 
     return redirect(reverse('products'))
 

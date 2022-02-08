@@ -2,22 +2,34 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% block content %}
 
-{% block inner_content %}
-<hr>
-<h2 class="logo-font mb-4">{% trans "Sign Out" %}</h2>
-<hr>
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
+<main id="main">
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <a class="btn btn-outline-black rounded-0" href="{% url 'home' %}">Cancel</a>
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
+  <section class="section accounts-section">
+    <div class="container">
+      <div class="row mb-4 align-items-center">
+        <div class="col-md-6" data-aos="fade-up">
+
+          <h2 class="logo-font mb-4">{% trans "Sign Out" %}</h2>
+
+          <p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+          <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+            <a class="btn btn-secondary login-button" href="{% url 'home' %}">Cancel</a>
+            <button class="btn btn-primary login-button" type="submit">{% trans 'Sign Out' %}</button>
+          </form>
+        
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 
 {% endblock %}
