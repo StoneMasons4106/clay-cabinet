@@ -302,6 +302,8 @@ br {
 .accounts-section input[name="password2"] {
     border-radius: 4px;
     width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
 }
 
 .fa-eye,
@@ -309,7 +311,7 @@ br {
     cursor: pointer;
     width: 1.2em;
     position: absolute;
-    top: .55rem;
+    top: .7rem;
     right: 1.5rem;
 }
 
