@@ -43,7 +43,7 @@
                             {% if product.image|length %}
                             <img class="img-fluid gallery-image" src="{{MEDIA_URL}}{{product.image}}" alt="{{ product.name }} - {{ product.description }}">
                             {% else %}
-                            <img class="img-fluid gallery-image" src="{{MEDIA_URL}}noimage.png">
+                            <img class="img-fluid gallery-image" src="{{MEDIA_URL}}noimage.webp">
                             {% endif %}
                         </a>
                     </div>
@@ -51,7 +51,7 @@
                 {% else %}
                     <div class="product-item item col-sm-6 col-md-4 col-lg-4 mb-4">
                         <p class="no-results-text">Oops! We couldn't find what you're looking for...</p>
-                        <img class="question-picture" src="{{MEDIA_URL}}kawaii_otter.png" alt="We could not find anything that matched your search, try again.">
+                        <img class="question-picture" src="{{MEDIA_URL}}kawaii_otter.webp" alt="We could not find anything that matched your search, try again.">
                     </div>
                 {% endif %}
             </div>
@@ -80,7 +80,7 @@
                             {% if product.image %}
                                 <img class="card-img-top img-fluid gallery-image carousel-item active" src="{{ product.image.url }}" alt="{{ product.name }} - {{ product.description }}">
                             {% else %}
-                                <img class="card-img-top img-fluid gallery-image carousel-item active" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }} - {{ product.description }}">
+                                <img class="card-img-top img-fluid gallery-image carousel-item active" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }} - {{ product.description }}">
                             {% endif %}
                             {% if product.image_two %}
                                 <img class="card-img-top img-fluid gallery-image carousel-item" src="{{ product.image_two.url }}" alt="{{ product.name }} - {{ product.description }}">
