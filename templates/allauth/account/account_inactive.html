@@ -2,12 +2,24 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Account Inactive" %}{% endblock %}
+{% block content %}
 
-{% block inner_content %}
-<hr>
-<h2 class="logo-font mb-4">{% trans "Account Inactive" %}</h2>
-<hr>
+<main id="main">
 
-<p>{% trans "This account is inactive." %}</p>
+    <section class="section accounts-section">
+      <div class="container">
+        <div class="row mb-4 align-items-center">
+          <div class="col-md-6" data-aos="fade-up">
+
+            <h2 class="logo-font mb-4">{% trans "Account Inactive" %}</h2>
+
+            <p>{% trans "This account is inactive." %}</p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+</main>
+
 {% endblock %}
