@@ -339,6 +339,13 @@ br {
 }
 
 
+/* Cart cart/templates/cart/cart.html */
+
+.cart-section {
+    background-color: #d5e4ad;
+}
+
+
 /* Form Validation */
 
 .wrapper {

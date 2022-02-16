@@ -1,5 +1,6 @@
 {% load static %}
 {% load product_tools %}
+{% load cart_tools %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +98,7 @@
                 {% endif %}
               </ul>          
             </li>
-            <li><a href="#">Cart</a></li>
+            <li><a href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i> <span class="cart_total">${% cart_grand_total request %}</span></a></li>
           </ul>
         </div>
       </div>
@@ -155,7 +156,7 @@
             {% endif %}
           </ul>          
         </li>
-        <li><a href="#">Cart</a></li>
+        <li><a href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i> <span class="cart_total">${% cart_grand_total request %}</span></a></li>
       </div>
       <a href="#" class="burger" data-bs-toggle="collapse" data-bs-target="#main-navbar">
         <span></span>
@@ -207,6 +208,7 @@
   <script src="{% static 'js/deleteProduct.js' %}"></script>
   <script src="{% static 'js/editProduct.js' %}"></script>
   <script src="{% static 'js/revealPassword.js' %}"></script>
+  <script src="{% static 'js/cart.js' %}"></script>
 
 </body>
 
