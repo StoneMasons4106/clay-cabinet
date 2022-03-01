@@ -3,6 +3,7 @@ from .models import Content
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
+from .forms import ContactForm
 from hubspot_api_calls import create_new_contact, create_new_note, associate_note_with_contact
 
 # Create your views here.
@@ -12,6 +13,8 @@ def contact(request):
     content = Content.objects.values()[0]
 
     if request.method == "POST":
+
+        form = ContactForm(request.POST)
 
         form_data = request.body.decode().split("=")
         first_name = form_data[2].split('&')[0]
@@ -41,9 +44,14 @@ def contact(request):
         note_id = create_new_note(message)
         associate_note_with_contact(contact_id, note_id)
 
+    else:
+
+        form = ContactForm()
+
     context = {
         'page': 'contact',
         'content': content,
+        'form': form,
     }
 
     return render(request, 'contact/contact.html', context)

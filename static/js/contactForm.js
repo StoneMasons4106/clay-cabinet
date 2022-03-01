@@ -17,7 +17,16 @@ function validateEmail(email) {
   return res.test(String(email).toLowerCase());
 };
 
+function callback(){
+  if(grecaptcha.getResponse().length !== 0){
+    console.log("The captcha has been already solved.");
+  } else {
+    console.log("The captcha has not been solved.")
+  };
+};
+
 $(document).ready(function(){
+  $('.g-recaptcha').attr("data-callback", "callback");
   var count = 0;
   $('#contact-button').on('click', function() {
     if (count == 1) {
@@ -33,14 +42,18 @@ $(document).ready(function(){
     } else if ($("input[name='email']").val() == "") {
       //do nothing
     } else {
-      var emailIsValid = validateEmail($("input[name='email']").val());
-      if (emailIsValid) {
-        count = count + 1;
-        contactForm();
-        $(this).addClass("button-loading");
-        setTimeout(function(){
-          $("#contact-button").addClass("success");
-        }, 2500);
+      if(grecaptcha.getResponse().length !== 0) {
+        var emailIsValid = validateEmail($("input[name='email']").val());
+        if (emailIsValid) {
+          count = count + 1;
+          contactForm();
+          $(this).addClass("button-loading");
+          setTimeout(function(){
+            $("#contact-button").addClass("success");
+          }, 2500);
+        } else {
+          //do nothing
+        };
       } else {
         //do nothing
       };

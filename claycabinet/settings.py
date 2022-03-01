@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'storages',
     'home',
     'contact',
+    'captcha',
     'products',
     'cart',
     'crispy_forms',
@@ -154,6 +155,8 @@ STANDARD_DELIVERY_PERCENTAGE = 25
 
 SALES_TAX_PERCENTAGE = 8.75
 
+RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
