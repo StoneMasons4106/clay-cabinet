@@ -345,6 +345,14 @@ br {
     background-color: #d5e4ad;
 }
 
+#keep-shopping-button {
+    margin-top: 30px;
+}
+
+.update-link,
+.remove-item {
+    margin-top: 10px;
+}
 
 /* Form Validation */
 

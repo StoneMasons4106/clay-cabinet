@@ -29,6 +29,9 @@
                                     </div>
                                 </div>
                                 {% for item in cart_items %}
+                                    {% if forloop.counter != 1 %}
+                                        <div class="row"><div class="col"><hr></div></div>
+                                    {% endif %}
                                     <div class="row">
                                         <div class="col-12 col-sm-6 mb-2">
                                             {% include "cart/product-image.html" %}
@@ -44,13 +47,7 @@
                                             {% include "cart/quantity-form.html" %}
                                         </div>
                                     </div>
-                                    <div class="row"><div class="col"><hr></div></div>
                                 {% endfor %}
-                                <div class="btt-button shadow-sm rounded-0 border border-black">
-                                    <a class="btt-link d-flex h-100">
-                                        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-                                    </a>	
-                                </div>
                             </div>
                             <div class="table-responsive rounded d-none d-md-block">
                                 <table class="table table-sm table-borderless">
@@ -96,8 +93,12 @@
                                 </table>
                             </div>
                         {% else %}
-                            <p class="lead mb-5">Your cart is empty.</p>
-                            <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                            <p>Hmm... It looks like nothing is in here yet.</p>
+                            <p>Try throwing some items in your cart and come back later!</p>
+                            <div>
+                                <img src="{{MEDIA_URL}}confused_dog.gif" alt="Nothing is currently in your cart, add something and try again.">
+                            </div>
+                            <a id="keep-shopping-button" href="{% url 'products' %}" class="btn btn-primary">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>

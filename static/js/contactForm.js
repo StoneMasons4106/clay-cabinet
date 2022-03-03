@@ -18,11 +18,7 @@ function validateEmail(email) {
 };
 
 function callback(){
-  if(grecaptcha.getResponse().length !== 0){
-    console.log("The captcha has been already solved.");
-  } else {
-    console.log("The captcha has not been solved.")
-  };
+  //pass
 };
 
 $(document).ready(function(){
@@ -42,7 +38,7 @@ $(document).ready(function(){
     } else if ($("input[name='email']").val() == "") {
       //do nothing
     } else {
-      if(grecaptcha.getResponse().length !== 0) {
+      if (grecaptcha.getResponse().length !== 0) {
         var emailIsValid = validateEmail($("input[name='email']").val());
         if (emailIsValid) {
           count = count + 1;
