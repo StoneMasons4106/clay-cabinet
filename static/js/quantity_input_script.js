@@ -1,8 +1,16 @@
-// Disable +/- buttons outside 1-99 range
+// Disable +/- buttons outside Product Inventory Range
 function handleEnableDisable(itemId) {
     var currentValue = parseInt($(`#id_qty_${itemId}`).val());
-    var minusDisabled = currentValue < 2;
-    var plusDisabled = currentValue > 98;
+    var productInventoryField = $(`#id_qty_${itemId}`).closest('.product-details-container').find('.product-inventory');
+    if (productInventoryField.text() == "We're sorry, this product is currently unavailable for order.") {
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > 0;
+    } else {
+        var productInventoryArr = productInventoryField.text().match(/[0-9]+$/);
+        var ProductInventory = parseInt(productInventoryArr[0], 10);
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > (ProductInventory - 1);
+    }
     $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
     $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
 }
