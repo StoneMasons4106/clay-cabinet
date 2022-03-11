@@ -354,6 +354,14 @@ br {
     margin-top: 10px;
 }
 
+
+/* Profile profiles/templates/profiles/profile.html */
+
+.profile-section {
+    background-color: #e9bacc;
+}
+
+
 /* Form Validation */
 
 .wrapper {

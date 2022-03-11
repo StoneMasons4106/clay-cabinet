@@ -87,7 +87,7 @@
             <li class="dropdown"><a href="#"><span>My Account</span> <i class="bi bi-chevron-down"></i></a>
               <ul class="dropdown-menu account-menu-small">
                 {% if request.user.is_authenticated %}
-                  <li><a href="#" class="dropdown-item black">My Account</a></li>
+                  <li><a href="{% url 'me' %}" class="dropdown-item black">My Account</a></li>
                   {% if request.user.is_superuser %}
                     <li><a href="{% url 'admin:index' %}" class="dropdown-item black">Site Management</a></li>
                   {% endif %}
@@ -145,7 +145,7 @@
         <li class="dropdown"><a href="#"><span>My Account</span> <i class="bi bi-chevron-down"></i></a>
           <ul class="dropdown-menu account-menu-large">
             {% if request.user.is_authenticated %}
-              <li><a href="#" class="dropdown-item">My Account</a></li>
+              <li><a href="{% url 'me' %}" class="dropdown-item">My Account</a></li>
               {% if request.user.is_superuser %}
                 <li><a href="{% url 'admin:index' %}" class="dropdown-item">Site Management</a></li>
               {% endif %}

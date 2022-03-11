@@ -1,0 +1,236 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<main id="main">
+  <section class="section profile-section" id="profile-section">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-6" data-aos="fade-up">
+          <h2>Profile</h2>
+          <p>Username and Personal Information</p>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Username:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ user.username }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Name:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{ user.first_name }} {{ user.last_name }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Email:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ user.email }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p id="default-delivery-information">
+            Default Delivery Information
+          </p>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Phone Number:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ profile.default_phone_number }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Street Address 1:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{ profile.default_street_address1 }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Street Address 2:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{ profile.default_street_address2 }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Town or City:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ profile.default_town_or_city }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>State or County:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ profile.default_county }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Postcode:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ profile.default_postcode }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless">
+              <thead>
+                <tr>
+                  <th>Country:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ profile.default_country }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="profile-buttons">
+            <a
+              href="#"
+              class="btn btn-success"
+            >
+              Edit Profile
+            </a>
+            <a
+              href="{% url 'account_change_password' %}"
+              class="btn btn-primary"
+            >
+              Change Password
+            </a>
+            <a
+              href="#"
+              class="btn btn-danger"
+              id="profile-delete-link"
+            >
+              Delete Profile
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up">
+          <h5 id="order-history">Order History</h5>
+          <div class="order-history table-responsive">
+            <table class="table table-sm table-borderless">
+              {% if orders %}
+              <thead>
+                <tr>
+                  <th>Order Number</th>
+                  <th>Date</th>
+                  <th>Items</th>
+                  <th>Order Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in orders %}
+                <tr>
+                  <td>
+                    <a
+                      href="#"
+                      title="{{ order.order_number }}"
+                    >
+                      {{ order.order_number|truncatechars:6 }}
+                    </a>
+                  </td>
+                  <td>{{ order.date }}</td>
+                  <td>
+                    <ul class="list-unstyled">
+                      {% for item in order.lineitems.all %}
+                      <li class="small">
+                        {{ item.product }} x{{ item.quantity }}
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                  <td>${{ order.grand_total }}</td>
+                </tr>
+                {% endfor %} {% else %}
+                <tr>
+                  <td>
+                    <p>No order history.</p>
+                  </td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- End Update Information-->
+</main>
+
+{% endblock %}
