@@ -88,6 +88,7 @@
               <ul class="dropdown-menu account-menu-small">
                 {% if request.user.is_authenticated %}
                   <li><a href="{% url 'me' %}" class="dropdown-item black">My Account</a></li>
+                  <li><a href="{% url 'order_history' %}" class="dropdown-item black">Order History</a></li>
                   {% if request.user.is_superuser %}
                     <li><a href="{% url 'admin:index' %}" class="dropdown-item black">Site Management</a></li>
                   {% endif %}
@@ -146,6 +147,7 @@
           <ul class="dropdown-menu account-menu-large">
             {% if request.user.is_authenticated %}
               <li><a href="{% url 'me' %}" class="dropdown-item">My Account</a></li>
+              <li><a href="{% url 'order_history' %}" class="dropdown-item">Order History</a></li>
               {% if request.user.is_superuser %}
                 <li><a href="{% url 'admin:index' %}" class="dropdown-item">Site Management</a></li>
               {% endif %}
