@@ -13,8 +13,19 @@
 </li>
 {% endfor %}
 {% endif %}
+{% if provider.id == "facebook" %}
+<div class="facebook-btn">
+  <a href="{% provider_login_url 'facebook' method='oauth2' %}">
+    <div class="facebook-icon-wrapper">
+      <i class="fab fa-facebook-f facebook-icon"></i>
+    </div>
+    <p class="btn-text"><b>Sign in with Facebook</b></p>
+  </a>
+</div>
+{% else %}
 <li>
   <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
      href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
 </li>
+{% endif %}
 {% endfor %}
