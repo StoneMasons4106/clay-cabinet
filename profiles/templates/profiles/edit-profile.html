@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<main id="main">
+    <section class="section profile-section" id="profile-section">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-6" data-aos="fade-up">
+            <h2>Edit Profile</h2>
+            <form
+              action="{% url 'me' %}"
+              method="POST"
+              id="profile-update-form"
+          >
+              {% csrf_token %}
+              <p class="text-muted">Username and Personal Information</p>
+              {{ form_two|crispy }}
+              <p class="text-muted">Default Delivery Information</p>
+              {{ form|crispy }}
+              <button class="btn btn-primary" id="update-information">
+              Update Information
+              </button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</main>
+
+{% endblock %}
