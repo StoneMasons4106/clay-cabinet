@@ -361,6 +361,21 @@ br {
     background-color: #e9bacc;
 }
 
+#profile-buttons a,
+#update-information {
+    font-size: 20px;
+}
+
+.table-headings {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.table-responsive th,
+.table-responsive td {
+    padding-left: 0px;
+}
+
 
 /* Form Validation */
 
