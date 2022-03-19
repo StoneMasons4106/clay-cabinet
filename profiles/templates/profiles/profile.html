@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %} {% load i18n %} {% block content %}
 
 <main id="main">
   <section class="section profile-section" id="profile-section">
@@ -191,11 +191,18 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Are you sure you'd like to delete your profile?
+          <p>Are you sure you'd like to delete your profile?</p>
+          <p>This will also delete every piece of information connected to your profile, outside of any orders you may have bought.</p>  
         </div>
         <div class="modal-footer">
+          <form id="signout_form" method="post" action="{% url 'delete_profile' %}">
+            {% csrf_token %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-danger delete-product-button">Delete</button>
+            <button id="delete-profile" class="btn btn-danger" type="submit">{% trans 'Delete My Profile' %}</button>
+          </form>
         </div>
         </div>
     </div>

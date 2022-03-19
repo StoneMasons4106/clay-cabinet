@@ -362,7 +362,8 @@ br {
 }
 
 #profile-buttons a,
-#update-information {
+#update-information,
+#back-to-profile {
     font-size: 20px;
 }
 
@@ -376,6 +377,10 @@ br {
     padding-left: 0px;
 }
 
+#profile-update-form input,
+#profile-update-form select {
+    margin-bottom: 15px;
+}
 
 /* Form Validation */
 

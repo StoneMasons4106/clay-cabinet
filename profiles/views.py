@@ -78,15 +78,6 @@ def delete_profile(request):
         user.delete()
 
         return redirect(reverse('home'))
-    
-    template = "profiles/delete_profile.html"
-
-    context= {
-        'page':'profile',
-        'on_profile_page': True,
-    }
-
-    return render(request, template, context)
 
 
 @login_required

@@ -13,9 +13,19 @@
           >
               {% csrf_token %}
               <p>Username and Personal Information</p>
-              {{ form_two|crispy }}
+              {% for field in form_two %}
+                {% if 'username' in field.name or 'email' in field.name %}
+                  <div class="wrapper">
+                    {{ field }}
+                    <div class="validation">*</div>
+                  </div>
+                {% else %}
+                  {{ field }}
+                {% endif %}
+              {% endfor %}
               <p>Default Delivery Information</p>
               {{ form|crispy }}
+              <a href="{% url 'me' %}" class="btn btn-secondary" id="back-to-profile">Back to Profile</a>
               <button class="btn btn-primary" id="update-information">
               Update Information
               </button>
