@@ -354,6 +354,11 @@ br {
     margin-top: 10px;
 }
 
+#secure-checkout,
+#keep-shopping {
+    font-size: 20px;
+}
+
 
 /* Profile profiles/templates/profiles/profile.html */
 

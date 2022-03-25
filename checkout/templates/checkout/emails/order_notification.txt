@@ -1,0 +1,20 @@
+New Order Received! Details below:
+
+Order Number: {{ order_number }}
+Order Date: {{ order_date }}
+
+Order Details:{% for item in order.lineitems.all %}
+{{ item.product.name }} - {{ item.quantity }} @ ${{ item.product.price }} each{% endfor %}
+
+Full Name: {{ full_name }}
+Address: {{ address }}
+Town or City: {{ town_or_city }}
+State or County: {{ county }}
+Postal Code: {{ zipcode }}
+Country: {{ country }}
+Phone: {{ phone }}
+
+Order Total: ${{ order_total }}
+Delivery: ${{ delivery_cost }}
+Sales Tax: ${{ sales_tax }}
+Grand Total: ${{ grand_total }}

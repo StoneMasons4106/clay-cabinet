@@ -1,0 +1,22 @@
+{% load i18n %}Hello from VyeRose!
+
+This email is to confirm that your order has shipped!
+
+Order Details and Tracking Details are below:
+
+Order Number: {{ order_number }}
+Order Date: {{ order_date }}
+
+Order Details:{% for item in order.lineitems.all %}
+{{ item.product.name }} - {{ item.quantity }} @ ${{ item.product.price }} each{% endfor %}
+
+Order Total: ${{ order_total }}
+Delivery: ${{ delivery_cost }}
+Sales Tax: ${{ sales_tax }}
+Grand Total: ${{ grand_total }}
+
+Courier: {{ courier }}
+Tracking Number: {{ tracking_number }}
+
+Thank you from VyeRose!
+https://vyerose.herokuapp.com/

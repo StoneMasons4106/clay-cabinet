@@ -35,6 +35,7 @@
   <!-- My CSS -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/provider_signin.css' %}">
+  <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 
   <!-- =======================================================
   * Template Name: MyPortfolio - v4.7.0
@@ -212,6 +213,16 @@
   <script src="{% static 'js/editProduct.js' %}"></script>
   <script src="{% static 'js/revealPassword.js' %}"></script>
   <script src="{% static 'js/cart.js' %}"></script>
+
+  {% if page == "checkout" %}
+
+  <!-- Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <!-- Stripe Elements JS-->
+  <script src="{% static 'js/stripe_elements.js' %}"></script>
+  
+  {% endif %}
 
 </body>
 
