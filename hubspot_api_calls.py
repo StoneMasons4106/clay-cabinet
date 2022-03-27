@@ -1,5 +1,6 @@
 import hubspot
 import os
+import json
 from hubspot.crm.contacts import SimplePublicObjectInput, ApiException
 import requests
 from pytz import timezone, utc
@@ -14,6 +15,7 @@ def create_new_contact(email, first_name, last_name):
         "email": email,
         "firstname": first_name,
         "lastname": last_name,
+        "hubspot_owner_id":os.environ.get("HUBSPOT_OWNER_ID"),
     }
 
     simple_public_object_input = SimplePublicObjectInput(properties=properties)
@@ -71,3 +73,67 @@ def associate_note_with_contact(contact_id, note_id):
     headers = {'accept': 'application/json'}
 
     requests.request("PUT", url, headers=headers, params=querystring)
+
+
+def create_new_deal(contact_id, deal_amount):
+
+    tz = timezone(os.environ.get("TZ"))
+
+    utcdt = utc.localize(
+        datetime(
+            year=datetime.now().year,
+            month=datetime.now().month,
+            day=datetime.now().day,
+            hour=datetime.now().hour,
+            minute=datetime.now().minute,
+            second=datetime.now().second,
+        )
+    ).astimezone(tz)
+
+    ts = int(utcdt.timestamp()*1000)
+
+    url= f'https://api.hubapi.com/deals/v1/deal?hapikey={os.environ.get("HUBSPOT_API_KEY")}'
+    
+    headers={}
+    
+    headers["Content-Type"]="application/json"
+    
+    data = json.dumps({
+    "associations": {
+        "associatedVids": [
+        contact_id
+        ]
+    },
+    "properties": [
+        {
+        "value": f"Website Sale",
+        "name": "dealname"
+        },
+        {
+        "value": "closedwon",
+        "name": "dealstage"
+        },
+        {
+        "value": "default",
+        "name": "pipeline"
+        },
+        {
+        "value": os.environ.get("HUBSPOT_OWNER_ID"),
+        "name": "hubspot_owner_id"
+        },
+        {
+        "value": ts,
+        "name": "closedate"
+        },
+        {
+        "value": deal_amount,
+        "name": "amount"
+        },
+        {
+        "value": "newbusiness",
+        "name": "dealtype"
+        }
+      ]
+    })
+
+    requests.post(url, headers = headers, data = data)

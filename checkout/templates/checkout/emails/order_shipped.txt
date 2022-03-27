@@ -1,4 +1,4 @@
-{% load i18n %}Hello from VyeRose!
+{% load i18n %}Hello from Clay Cabinet!
 
 This email is to confirm that your order has shipped!
 
@@ -18,5 +18,5 @@ Grand Total: ${{ grand_total }}
 Courier: {{ courier }}
 Tracking Number: {{ tracking_number }}
 
-Thank you from VyeRose!
-https://vyerose.herokuapp.com/
+Thank you from Clay Cabinet!
+https://claycabinet.herokuapp.com/

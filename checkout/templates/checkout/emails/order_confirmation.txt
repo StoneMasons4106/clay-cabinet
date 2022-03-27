@@ -1,4 +1,4 @@
-{% load i18n %}Hello from VyeRose!
+{% load i18n %}Hello from Clay Cabinet!
 
 This email is to confirm the recent order as shown below:
 
@@ -23,5 +23,5 @@ Grand Total: ${{ grand_total }}
 
 Please allow 2 to 3 weeks for manufacturing and shipping.
 
-Thank you from VyeRose!
-https://vyerose.herokuapp.com/
+Thank you from Clay Cabinet!
+https://claycabinet.herokuapp.com/

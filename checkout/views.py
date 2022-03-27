@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.conf import settings
 from cart.models import UserCart
+from hubspot_api_calls import create_new_contact, create_new_deal
 from .forms import OrderForm
 from .models import Order, OrderLineItem, OrderProgress
 from products.models import Product
@@ -39,7 +40,6 @@ def cache_checkout_data(request):
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-    products = Product.objects.all()
 
     if request.method == 'POST':
         try:
@@ -69,6 +69,11 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
             order.order_progress = get_object_or_404(OrderProgress, name='open')
+            current_cart = cart_contents(request)
+            order.order_total = float(current_cart["total"])
+            order.delivery_cost = order.order_total * (settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+            order.sales_tax = order.order_total * (settings.SALES_TAX_PERCENTAGE / 100)
+            order.grand_total = order.order_total + order.delivery_cost + order.sales_tax
             order.save()
             for item_id, item_data in cart.items():
                 try:
@@ -97,6 +102,10 @@ def checkout(request):
                     return redirect(reverse('view_cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
+            first_name = order.full_name.split(' ')[0]
+            last_name = order.full_name.split(' ')[1]
+            contact_id = create_new_contact(order.email, first_name, last_name)
+            create_new_deal(contact_id, order.grand_total)
             send_order_confirmation(request, order)
 
             return redirect(reverse('checkout_success', args=[order.order_number]))
@@ -128,9 +137,9 @@ def checkout(request):
         order_form = OrderForm()
 
     template = 'checkout/checkout.html'
+    
     context = {
         'page': 'checkout',
-        'products': products,
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
@@ -232,7 +241,7 @@ def send_order_confirmation(request, order):
         )
 
         confirmation_message_wrapper = EmailMessage(
-            '[VyeRose] Thank you for your order!',
+            '[ClayCabinet] Thank you for your order!',
             confirmation_message,
             to=[email]
         )
