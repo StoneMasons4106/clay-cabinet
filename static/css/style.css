@@ -363,6 +363,20 @@ br {
     font-size: 20px;
 }
 
+.contents-summary {
+    margin: 20px 0px 20px 0px !important; 
+}
+
+
+/* Checkout checkout/templates/checkout/checkout.html */
+
+.checkout-buttons {
+    font-size: 20px;
+}
+
+#payment-form fieldset {
+    padding-left: 0px;
+}
 
 /* Profile profiles/templates/profiles/profile.html */
 
