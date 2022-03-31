@@ -378,6 +378,11 @@ br {
     padding-left: 0px;
 }
 
+#payment-form input,
+#payment-form select {
+    margin-bottom: 15px;
+}
+
 /* Profile profiles/templates/profiles/profile.html */
 
 .profile-section {
