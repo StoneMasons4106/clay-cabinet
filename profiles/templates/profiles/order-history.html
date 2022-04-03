@@ -4,7 +4,7 @@
   <section class="section profile-section" id="profile-section">
     <div class="container">
       <div class="row mb-4">
-        <div class="col-md-6" data-aos="fade-up">
+        <div class="col" data-aos="fade-up">
           <h2>Order History</h2>
           <div class="order-history table-responsive">
             <table class="table table-sm table-borderless">
@@ -22,7 +22,7 @@
                 <tr>
                   <td>
                     <a
-                      href="{% url 'order_history' order.order_number %}"
+                      href="{% url 'past_order' order.order_number %}"
                       title="{{ order.order_number }}"
                     >
                       {{ order.order_number|truncatechars:6 }}

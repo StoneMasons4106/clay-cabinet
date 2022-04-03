@@ -383,6 +383,18 @@ br {
     margin-bottom: 15px;
 }
 
+.checkout-section-container {
+    margin-bottom: 30px;
+}
+
+.checkout-success-button {
+    font-size: 20px;
+}
+
+.order-confirmation-wrapper {
+    padding-left: 0px !important;
+}
+
 /* Profile profiles/templates/profiles/profile.html */
 
 .profile-section {
@@ -408,6 +420,10 @@ br {
 #profile-update-form input,
 #profile-update-form select {
     margin-bottom: 15px;
+}
+
+.order-history {
+    margin-top: 30px;
 }
 
 /* Form Validation */

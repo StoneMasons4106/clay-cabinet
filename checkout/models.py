@@ -1,4 +1,5 @@
-from uuid import uuid4
+import random
+import string
 
 from django.db import models
 from django.db.models import Sum
@@ -28,7 +29,7 @@ class OrderProgress(models.Model):
 
 
 class Order(models.Model):
-    order_number = models.CharField(max_length=32, null=False, editable=False)
+    order_number = models.CharField(max_length=10, null=False, editable=False)
     order_progress = models.ForeignKey('OrderProgress', null=True, blank=True, on_delete=models.SET_NULL)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='orders')
@@ -56,7 +57,8 @@ class Order(models.Model):
         """
         Generate a random, unique order number using UUID
         """
-        return uuid4().hex.upper()
+        output_string = ''.join(random.SystemRandom().choice(string.ascii_letters.upper() + string.digits) for _ in range(10))
+        return output_string
 
     def update_total(self):
         """

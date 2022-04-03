@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from . import contexts
 from .models import UserCart
+from django.contrib import messages
 import json
 
 from products.models import Product
@@ -33,10 +34,12 @@ def add_to_cart(request, item_id):
                 user_cart[item_id] += quantity
                 cart.cart = user_cart
                 cart.save()
+                messages.success(request, f'Updated {product.name} quantity to {quantity}')
             else:
                 user_cart[item_id] = quantity
                 cart.cart = user_cart
                 cart.save()
+                messages.success(request, f'Added {quantity} {product.name} to your cart')
         
         except:
             user_cart = {}
@@ -45,6 +48,7 @@ def add_to_cart(request, item_id):
             cart = UserCart(user=request.user)
             cart.cart = user_cart
             cart.save()
+            messages.success(request, f'Added {quantity} {product.name} to your cart')
 
         request.session['cart'] = cart.cart
     
@@ -54,8 +58,10 @@ def add_to_cart(request, item_id):
         
         if item_id in list(cart.keys()):
             cart[item_id] += quantity
+            messages.success(request, f'Updated {product.name} quantity to {quantity}')
         else:
             cart[item_id] = quantity
+            messages.success(request, f'Added {quantity} {product.name} to your cart')
         
         request.session['cart'] = cart
     
