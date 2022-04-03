@@ -79,6 +79,8 @@ def checkout(request):
                 try:
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
+                        product.inventory = product.inventory - item_data
+                        product.save()
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
@@ -87,6 +89,8 @@ def checkout(request):
                         order_line_item.save()
                     else:
                         for quantity in item_data.items():
+                            product.inventory = product.inventory - quantity
+                            product.save()
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,

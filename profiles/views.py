@@ -5,6 +5,7 @@ from .models import UserProfile
 from .forms import UserProfileForm, UserForm
 from django.contrib.auth.models import User
 from allauth.account.models import EmailAddress
+from checkout.models import Order
 
 
 @login_required
@@ -87,11 +88,32 @@ def order_history(request):
     orders = profile.orders.all() 
     
     template = 'profiles/order-history.html'
+    
     context = {
         'page': 'profile',
         'profile': profile,
         'orders': orders,
         'on_profile_page': True,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def past_order(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+
+    messages.info(request, (
+        f'This is a past confirmation for order number {order_number}. '
+        'A confirmation email was sent on the order date.'
+    ))
+
+    template = 'checkout/checkout_success.html'
+
+    context = {
+        'page': 'profile',
+        'order': order,
+        'from_profile': True,
     }
 
     return render(request, template, context)
