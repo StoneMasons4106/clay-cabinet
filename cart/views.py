@@ -84,11 +84,13 @@ def adjust_cart(request, item_id):
             json_cart[item_id] = quantity
             cart.cart = json_cart
             cart.save()
+            messages.success(request, f'Updated {product.name} quantity to {quantity}')
         else:
             json_cart = cart.cart.replace("'", '"')
             json.loads(json_cart).pop(item_id)
             cart.cart = json_cart
             cart.save()
+            messages.success(request, f'Removed {product.name} from your cart')
         request.session['cart'] = json_cart
 
     else:
@@ -97,8 +99,10 @@ def adjust_cart(request, item_id):
 
         if quantity > 0:
                 cart[item_id] = quantity
+                messages.success(request, f'Updated {product.name} quantity to {cart[item_id]}')
         else:
             cart.pop(item_id)
+            messages.success(request, f'Removed {product.name} from your cart')
 
         request.session['cart'] = cart
     
@@ -121,6 +125,7 @@ def remove_from_cart(request, item_id):
                 json_cart.pop(item_id)
                 cart.cart = json_cart
                 cart.save()
+                messages.success(request, f'Removed {product.name} from your cart')
 
                 request.session['cart'] = json_cart
                 return HttpResponse(status=200)
@@ -135,6 +140,7 @@ def remove_from_cart(request, item_id):
                 cart = request.session.get('cart', {})
 
                 cart.pop(item_id)
+                messages.success(request, f'Removed {product.name} from your cart')
 
                 request.session['cart'] = cart
                 return HttpResponse(status=200)

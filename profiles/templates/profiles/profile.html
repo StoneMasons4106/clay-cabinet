@@ -163,12 +163,14 @@
             >
               Edit Profile
             </a>
+            {% if not social_account %}
             <a
               href="{% url 'account_change_password' %}"
               class="btn btn-primary"
             >
               Change Password
             </a>
+            {% endif %}
             <a
               href="#"
               class="btn btn-danger"

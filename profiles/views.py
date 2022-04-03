@@ -5,6 +5,7 @@ from .models import UserProfile
 from .forms import UserProfileForm, UserForm
 from django.contrib.auth.models import User
 from allauth.account.models import EmailAddress
+from allauth.socialaccount.models import SocialAccount
 from checkout.models import Order
 
 
@@ -13,6 +14,11 @@ def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
     user = get_object_or_404(User, username=request.user)
+
+    try:
+        social_account = get_object_or_404(SocialAccount, user_id=request.user)
+    except:
+        social_account = False
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -23,14 +29,15 @@ def profile(request):
                 if str(request.POST.get('email')) != str(user_email):
                     new_email = request.POST.get('email')
                     profile.add_email_address(request, new_email)
+                    messages.success(request, 'Profile updated successfully, please confirm the new email in your profile by clicking the link in the email sent to you.')
                 else:
-                    pass
+                    messages.success(request, 'Profile updated successfully.')
                 form.save()
                 form_two.save()
             except EmailAddress.MultipleObjectsReturned:
-                pass
+                messages.error(request, 'Please confirm the email in your profile before attempting to update it again.')
         else:
-            pass
+            messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
         form_two = UserForm(instance=user)
@@ -44,6 +51,7 @@ def profile(request):
         'user': user,
         'orders': orders,
         'on_profile_page': True,
+        'social_account': social_account,
     }
 
     return render(request, template, context)
