@@ -60,7 +60,6 @@ def create_new_note(message):
 
     response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
     json = response.json()
-
     return json["id"]
 
 
@@ -75,7 +74,7 @@ def associate_note_with_contact(contact_id, note_id):
     requests.request("PUT", url, headers=headers, params=querystring)
 
 
-def create_new_deal(contact_id, deal_amount):
+def create_new_deal(contact_id, deal_amount, full_name, order_no):
 
     tz = timezone(os.environ.get("TZ"))
 
@@ -106,7 +105,7 @@ def create_new_deal(contact_id, deal_amount):
     },
     "properties": [
         {
-        "value": f"Website Sale",
+        "value": f"{full_name} - {order_no}",
         "name": "dealname"
         },
         {
@@ -136,4 +135,21 @@ def create_new_deal(contact_id, deal_amount):
       ]
     })
 
-    requests.post(url, headers = headers, data = data)
+    response = requests.post(url, headers = headers, data = data)
+    return response.json()["dealId"]
+
+
+def associate_note_with_deal(deal_id, note_id):
+
+    url = f"https://api.hubapi.com/crm/v4/objects/notes/{note_id}/associations/deal/{deal_id}"
+
+    querystring = {"hapikey":os.environ.get("HUBSPOT_API_KEY")}
+
+    payload = "[{\"associationCategory\":\"HUBSPOT_DEFINED\",\"associationTypeId\":214}]"
+
+    headers = {
+        'accept': "application/json",
+        'content-type': "application/json"
+    }
+
+    requests.request("PUT", url, data=payload, headers=headers, params=querystring)

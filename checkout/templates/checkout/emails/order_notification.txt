@@ -18,3 +18,5 @@ Order Total: ${{ order_total }}
 Delivery: ${{ delivery_cost }}
 Sales Tax: ${{ sales_tax }}
 Grand Total: ${{ grand_total }}
+
+Custom Notes: {{ order.custom_order_notes }}

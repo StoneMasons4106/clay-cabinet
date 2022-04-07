@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.conf import settings
 from cart.models import UserCart
-from hubspot_api_calls import create_new_contact, create_new_deal
+from hubspot_api_calls import create_new_contact, create_new_deal, create_new_note, associate_note_with_deal
 from .forms import OrderForm
 from .models import Order, OrderLineItem, OrderProgress
 from products.models import Product
@@ -75,6 +75,9 @@ def checkout(request):
             order.sales_tax = order.order_total * (settings.SALES_TAX_PERCENTAGE / 100)
             order.grand_total = order.order_total + order.delivery_cost + order.sales_tax
             order.save()
+
+            message = ''
+
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -89,6 +92,7 @@ def checkout(request):
                             product=product,
                             quantity=item_data,
                         )
+                        message += f'- {str(order_line_item.product)} : {str(order_line_item.quantity)} - '
                         order_line_item.save()
                     else:
                         for quantity in item_data.items():
@@ -102,6 +106,7 @@ def checkout(request):
                                 product=product,
                                 quantity=quantity,
                             )
+                            message += f'- {str(order_line_item.product)} : {str(order_line_item.quantity)} - '
                             order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
@@ -112,10 +117,28 @@ def checkout(request):
                     return redirect(reverse('view_cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            first_name = order.full_name.split(' ')[0]
-            last_name = order.full_name.split(' ')[1]
+            
+            try:
+                first_name = order.full_name.split(' ')[0]
+            except:
+                first_name = order.full_name
+            try:
+                last_name = order.full_name.split(' ')[1]
+                if len(order.full_name.split(' ')) >= 3:
+                    for item in order.full_name.split(' ')[2:]:
+                        last_name += f' {item}'
+            except:
+                last_name = ''
+            
+            if order.custom_order_notes:
+                message += f'- Custom Notes : {str(order.custom_order_notes)} -'
+            else:
+                pass
+
             contact_id = create_new_contact(order.email, first_name, last_name)
-            create_new_deal(contact_id, order.grand_total)
+            deal_id = create_new_deal(contact_id, order.grand_total, order.full_name, order.order_number)
+            note_id = create_new_note(message)
+            associate_note_with_deal(deal_id, note_id)
             send_order_confirmation(request, order)
 
             return redirect(reverse('checkout_success', args=[order.order_number]))
