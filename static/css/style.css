@@ -322,7 +322,8 @@ br {
 .accounts-section input[name="email2"],
 .accounts-section input[name="username"],
 .accounts-section input[name="password1"],
-.accounts-section input[name="password2"] {
+.accounts-section input[name="password2"],
+.accounts-section input[name="oldpassword"] {
     border-radius: 4px;
     width: 100%;
     padding: 10px 12px;
