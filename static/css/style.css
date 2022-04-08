@@ -542,13 +542,13 @@ textarea:invalid, textarea:invalid ~ .validation {
     }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1400px) {
     #main-navbar {
         display: none;
     }
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1399px) {
     .burger {
         display: block;
     }
