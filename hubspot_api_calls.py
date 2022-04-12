@@ -30,6 +30,19 @@ def create_new_contact(email, first_name, last_name):
         return existing_contact_id
 
 
+def add_phone_number_to_contact(contact_id, phone_number):
+    
+    client = hubspot.Client.create(api_key=os.environ.get("HUBSPOT_API_KEY"))
+
+    properties = {
+        "phone": phone_number,
+    }
+    
+    simple_public_object_input = SimplePublicObjectInput(properties=properties)
+    
+    client.crm.contacts.basic_api.update(contact_id=contact_id, simple_public_object_input=simple_public_object_input)
+
+
 def create_new_note(message):
 
     url = "https://api.hubapi.com/crm/v3/objects/notes"

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.conf import settings
 from cart.models import UserCart
-from hubspot_api_calls import create_new_contact, create_new_deal, create_new_note, associate_note_with_deal
+from hubspot_api_calls import create_new_contact, create_new_deal, create_new_note, associate_note_with_deal, add_phone_number_to_contact
 from .forms import OrderForm
 from .models import Order, OrderLineItem, OrderProgress
 from products.models import Product
@@ -136,6 +136,7 @@ def checkout(request):
                 pass
 
             contact_id = create_new_contact(order.email, first_name, last_name)
+            add_phone_number_to_contact(contact_id, order.phone_number)
             deal_id = create_new_deal(contact_id, order.grand_total, order.full_name, order.order_number)
             note_id = create_new_note(message)
             associate_note_with_deal(deal_id, note_id)
