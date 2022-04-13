@@ -201,15 +201,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-lg-7 text-right">
-                        <a href="{% url 'products' %}" class="btn btn-primary checkout-success-button">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span>Keep Shopping</span>
-                        </a>
-                    </div>
+                <div id="checkout-success-buttons">
+                    <a href="{% url 'products' %}" class="btn btn-primary checkout-success-button">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span>Keep Shopping</span>
+                    </a>
+                    {% if order.order_progress_id == 4 %}
+                    <a href="#" class="btn btn-success checkout-success-button" target="_blank" rel="noopener noreferrer">
+                        <span>Track My Order</span>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
             <!-- End Order Confirmation -->
