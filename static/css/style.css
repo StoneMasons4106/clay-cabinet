@@ -104,7 +104,7 @@
 /* Footer - Found in all pages, editable on templates/base.html */
 
 .footer .container {
-    padding-top: 60px;
+    padding-top: 35px;
 }
 
 .facebook:hover {
@@ -341,6 +341,14 @@ br {
 
 .login-button {
     font-size: 20px;
+}
+
+form.login {
+    margin-top: 16px;
+}
+
+p.reset-trouble {
+    margin-top: 15px;
 }
 
 
