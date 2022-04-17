@@ -167,7 +167,11 @@
                                 </div>
     
                                 <div class="col{% if s %}-12 mt-2{% endif %}">
+                                    {% if product.name == "Customized Merch" %}
+                                    <a class="btn btn-secondary add-to-cart"><i class='fas fa-cart-plus'></i> Add to Cart</a>
+                                    {% else %}
                                     <button type="submit" class="btn btn-success add-to-cart"><i class='fas fa-cart-plus'></i> Add to Cart</button>
+                                    {% endif %}
                                 </div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                             </div>
