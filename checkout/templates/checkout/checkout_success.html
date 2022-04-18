@@ -187,6 +187,19 @@
                                         <p class="mb-0">${{ order.sales_tax }}</p>
                                     </div>
                                 </div>
+
+                                {% if discount == 'True' %}
+
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <p class="mb-0 text-black font-weight-bold">Discount</p>
+                                    </div>
+                                    <div class="col-12 col-md-8 text-md-right">
+                                        <p class="mb-0">-{{ percent_off }}%</p>
+                                    </div>
+                                </div>
+
+                                {% endif %}
     
                                 <div class="row">
                                     <div class="col-12 col-md-4">

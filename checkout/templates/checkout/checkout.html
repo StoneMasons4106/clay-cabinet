@@ -49,13 +49,13 @@
                                 <p class="my-0">Order Total:</p>
                                 <p class="my-0">Delivery:</p>
                                 <p class="my-0">Sales Tax:</p>
-                                <p class="my-0">Grand Total:</p>
+                                <p class="my-0" id="grand-total-label">Grand Total:</p>
                             </div>
                             <div class="col-3">
                                 <p class="my-0">${{ total | floatformat:2 }}</p>
                                 <p class="my-0">${{ delivery | floatformat:2 }}</p>
                                 <p class="my-0">${{ sales_tax | floatformat:2 }}</p>
-                                <p class="my-0"><strong>${{ grand_total | floatformat:2 }}</strong></p>
+                                <p class="my-0" id="grand-total"><strong>${{ grand_total | floatformat:2 }}</strong></p>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                     {{ order_form.country }}
                                     <div class="validation">*</div>
                                 </div>
-                                <div class="form-check form-check-inline float-right mr-0">
+                                <div class="form-check form-check-inline mr-0">
                                     {% if user.is_authenticated %}
                                         <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
                                         <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
@@ -116,9 +116,17 @@
                                     {% endif %}
                                 </div>
                             </fieldset>
-                            <fieldset class="rounded mb-5">
+                            <fieldset class="rounded mb-3">
                                 <legend class="fieldset-label small text-black px-2 w-auto">Customization</legend>
                                 <div id="custom_order_notes">{{ order_form.custom_order_notes | as_crispy_field }}</div>
+                            </fieldset>
+                            <fieldset class="rounded mb-3">
+                                <legend class="fieldset-label small text-black px-2 w-auto">Discount Code</legend>
+                                <div class="wrapper">
+                                    <span id="discount-code">{{ order_form.discount_code }}</span>
+                                    <div class="validation">*</div>
+                                </div>
+                                <a class="btn btn-primary checkout-buttons" id="apply-discount-code">Apply Discount Code</a>
                             </fieldset>
                             <fieldset>
                                 <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
@@ -132,7 +140,7 @@
                             </fieldset>
 
                             <div class="submit-button text-right mt-5 mb-2">                    
-                                <a href="{% url 'view_cart' %}" class="btn btn-primary checkout-buttons">
+                                <a href="{% url 'view_cart' %}" class="btn btn-secondary checkout-buttons">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
@@ -148,7 +156,7 @@
                                     <span class="icon">
                                         <i class="fas fa-exclamation-circle"></i>
                                     </span>
-                                    <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
+                                    <span>Your card will be charged <strong id="card-charged">${{ grand_total|floatformat:2 }}</strong></span>
                                 </p>
                             </div>
                         </form>

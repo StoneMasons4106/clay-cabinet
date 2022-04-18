@@ -6,7 +6,7 @@ from django.conf import settings
 from cart.models import UserCart
 from hubspot_api_calls import create_new_contact, create_new_deal, create_new_note, associate_note_with_deal, add_phone_number_to_contact
 from .forms import OrderForm
-from .models import Order, OrderLineItem, OrderProgress
+from .models import Order, OrderLineItem, OrderProgress, DiscountCode
 from products.models import Product
 from cart.contexts import cart_contents
 from profiles.models import UserProfile
@@ -59,6 +59,7 @@ def checkout(request):
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
             'custom_order_notes': request.POST['custom_order_notes'],
+            'discount_code': request.POST["discount_code"],
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
@@ -73,7 +74,16 @@ def checkout(request):
             order.order_total = float(current_cart["total"])
             order.delivery_cost = order.order_total * (settings.STANDARD_DELIVERY_PERCENTAGE / 100)
             order.sales_tax = order.order_total * (settings.SALES_TAX_PERCENTAGE / 100)
-            order.grand_total = order.order_total + order.delivery_cost + order.sales_tax
+            grand_total = order.order_total + order.delivery_cost + order.sales_tax
+            if order.discount_code:
+                discount_code_response = check_discount_code(order.discount_code)
+                if discount_code_response["discount"] == 'False':
+                    order.grand_total = grand_total
+                else:
+                    order.grand_total = round(grand_total * float((1 - (int(discount_code_response["percent_off"]) / 100))), 2)
+            else:
+                order.grand_total = grand_total
+
             order.save()
 
             message = ''
@@ -137,7 +147,7 @@ def checkout(request):
 
             contact_id = create_new_contact(order.email, first_name, last_name)
             add_phone_number_to_contact(contact_id, order.phone_number)
-            deal_id = create_new_deal(contact_id, order.grand_total, order.full_name, order.order_number)
+            deal_id = create_new_deal(contact_id, round(float(order.grand_total), 2), order.full_name, order.order_number)
             note_id = create_new_note(message)
             associate_note_with_deal(deal_id, note_id)
             send_order_confirmation(request, order)
@@ -209,6 +219,17 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+    if order.discount_code:
+        discount_code_response = check_discount_code(order.discount_code)
+        if discount_code_response["discount"] == 'False':
+            discount = 'False'
+            percent_off = 0
+        else:
+            discount = 'True'
+            percent_off = discount_code_response["percent_off"]
+    else:
+        discount = 'False'
+        percent_off = 0
 
     if request.user.username:
         cart = get_object_or_404(UserCart, user=request.user)
@@ -224,6 +245,8 @@ def checkout_success(request, order_number):
     context = {
         'page': 'checkout_success',
         'order': order,
+        'discount': discount,
+        'percent_off': percent_off,
     }
 
     return render(request, template, context)
@@ -302,3 +325,43 @@ def send_order_confirmation(request, order):
 
         confirmation_message_wrapper.send()
         notification_message_wrapper.send()
+
+
+def verify_discount_code(request):
+    
+    if request.method == "POST":
+        discount_codes = DiscountCode.objects.values()
+        discount_code = request.body.decode().split("discount_code=")
+        code = discount_code[1].split("&")[0]
+        count = 0
+        for discount_code in discount_codes:
+            if code == discount_code["code"]:
+                return HttpResponse(json.dumps({'discount': 'True', 'percent_off': str(discount_code["percent_off"])}), content_type="application/json")
+            else:
+                count = count + 1
+                if count == len(discount_codes):
+                    return HttpResponse(json.dumps({'discount': 'False'}), content_type="application/json")
+                continue
+
+    return redirect(reverse('checkout'))
+
+
+def check_discount_code(code):
+    discount_codes = DiscountCode.objects.values()
+    count = 0
+    for discount_code in discount_codes:
+        if code == discount_code["code"]:
+            response = {
+                'discount': 'True', 
+                'percent_off': str(discount_code["percent_off"]),
+            }
+            return response
+        else:
+            count = count + 1
+            if count == len(discount_codes):
+                response = {
+                    'discount': 'False',
+                }
+                return response
+            continue
+

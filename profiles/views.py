@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from allauth.account.models import EmailAddress
 from allauth.socialaccount.models import SocialAccount
 from checkout.models import Order
+from checkout.views import check_discount_code
 
 
 @login_required
@@ -111,6 +112,18 @@ def order_history(request):
 def past_order(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
+    if order.discount_code:
+        discount_code_response = check_discount_code(order.discount_code)
+        if discount_code_response["discount"] == 'False':
+            discount = 'False'
+            percent_off = 0
+        else:
+            discount = 'True'
+            percent_off = discount_code_response["percent_off"]
+    else:
+        discount = 'False'
+        percent_off = 0
+
     messages.info(request, (
         f'This is a past confirmation for order number {order_number}. '
         'A confirmation email was sent on the order date.'
@@ -121,6 +134,8 @@ def past_order(request, order_number):
     context = {
         'page': 'profile',
         'order': order,
+        'discount': discount,
+        'percent_off': percent_off,
         'from_profile': True,
     }
 

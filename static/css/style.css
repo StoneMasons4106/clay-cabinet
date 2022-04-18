@@ -404,6 +404,10 @@ p.reset-trouble {
     padding-left: 0px !important;
 }
 
+.form-check {
+    padding-left: 0px !important;
+}
+
 /* Profile profiles/templates/profiles/profile.html */
 
 .profile-section {

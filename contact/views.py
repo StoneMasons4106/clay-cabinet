@@ -15,7 +15,6 @@ def contact(request):
     if request.method == "POST":
 
         form = ContactForm(request.POST)
-
         form_data = request.body.decode().split("=")
         first_name = form_data[2].split('&')[0]
         last_name = form_data[3].split('&')[0]
