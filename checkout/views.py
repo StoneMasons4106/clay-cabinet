@@ -330,12 +330,22 @@ def send_order_confirmation(request, order):
 def verify_discount_code(request):
     
     if request.method == "POST":
+        stripe.api_key = settings.STRIPE_SECRET_KEY
         discount_codes = DiscountCode.objects.values()
         discount_code = request.body.decode().split("discount_code=")
+        payment_intent = request.body.decode().split("client_secret=")
         code = discount_code[1].split("&")[0]
+        client_secret = payment_intent[1].split("&")[0]
+        intent = client_secret.split("_secret")[0]
         count = 0
         for discount_code in discount_codes:
             if code == discount_code["code"]:
+                amount = request.body.decode().split("grand_total=")[1]
+                discounted_amount = round((1 - (int(discount_code["percent_off"]) / 100)) * float(amount), 2) * 100
+                stripe.PaymentIntent.modify(
+                    intent,
+                    amount = int(discounted_amount),
+                )
                 return HttpResponse(json.dumps({'discount': 'True', 'percent_off': str(discount_code["percent_off"])}), content_type="application/json")
             else:
                 count = count + 1

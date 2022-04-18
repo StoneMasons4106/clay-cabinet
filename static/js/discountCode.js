@@ -21,6 +21,7 @@ $('#apply-discount-code').on('click', function() {
                 newGrandTotal = ((1 - (response.percent_off / 100)) * grandTotalFloat).toFixed(2);
                 grandTotal.text('$' + String(newGrandTotal));
                 $("strong#card-charged").text('$' + String(newGrandTotal));
+                $("span.cart_total").text('$' + String(newGrandTotal));
             }
         },
     });

@@ -137,6 +137,7 @@
                                 <!-- Pass the client secret to the view so we can get the payment intent id -->
                                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
                                 <input type="hidden" value="{{ stripe_public_key }}" name="stripe_public_key">
+                                <input type="hidden" value="{{ grand_total|floatformat:2 }}" name="grand_total">
                             </fieldset>
 
                             <div class="submit-button text-right mt-5 mb-2">                    
