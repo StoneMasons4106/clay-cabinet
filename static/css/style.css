@@ -420,6 +420,10 @@ p.reset-trouble {
     font-size: 20px;
 }
 
+#profile-buttons a {
+    margin-bottom: 5px;
+}
+
 .table-headings {
     margin-top: 20px;
     margin-bottom: 10px;

@@ -43,7 +43,10 @@
                 {% endfor %} {% else %}
                 <tr>
                   <td>
-                    <p>No order history.</p>
+                    <p>Hmm... It looks like you haven't ordered anything yet.</p>
+                    <div>
+                        <img src="{{MEDIA_URL}}confused_dog.gif" alt="You haven't ordered anything yet.">
+                    </div>
                   </td>
                 </tr>
                 {% endif %}
