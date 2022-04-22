@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import HomePagePicture, Testimonial, Content
+import ast
 from .youtube_feed import get_videos
-import os
 
 # Create your views here.
 
@@ -10,9 +10,9 @@ def index(request):
 
     home_page_pictures = HomePagePicture.objects.values()
     testimonials = Testimonial.objects.values()
-    content = Content.objects.values()[0]
+    content = get_object_or_404(Content, name="Homepage Content")
 
-    youtube_videos = get_videos()
+    youtube_videos = ast.literal_eval(content.video_content)
 
     context = {
         'page': 'home',

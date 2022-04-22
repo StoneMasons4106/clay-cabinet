@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'crispy_forms',
+    'django_serverless_cron',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -247,3 +248,12 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+
+
+SERVERLESS_CRONJOBS = [
+    (
+        '1_days',
+        'home.youtube_feed.get_videos',
+        {}
+    ),
+]

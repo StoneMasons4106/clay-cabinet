@@ -27,6 +27,7 @@ class Content(models.Model):
     gallery_title = models.CharField(max_length=254)
     gallery_text = models.CharField(max_length=254)
     video_title = models.CharField(max_length=254)
+    video_content = models.CharField(max_length=100000, null=True, blank=True)
     video_text = models.CharField(max_length=254)
     testimonial_title = models.CharField(max_length=254)
     testimonial_text = models.CharField(max_length=254)

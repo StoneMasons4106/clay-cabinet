@@ -44,6 +44,7 @@ class ContentAdmin(admin.ModelAdmin):
         'gallery_title',
         'gallery_text',
         'video_title',
+        'video_content',
         'video_text',
         'testimonial_title',
         'testimonial_text',
