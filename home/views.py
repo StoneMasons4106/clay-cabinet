@@ -11,7 +11,7 @@ def index(request):
     home_page_pictures = HomePagePicture.objects.values()
     testimonials = Testimonial.objects.values()
     content = get_object_or_404(Content, name="Homepage Content")
-
+    
     youtube_videos = ast.literal_eval(content.video_content)
 
     context = {
