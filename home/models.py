@@ -24,6 +24,7 @@ class Testimonial(models.Model):
 
 class Content(models.Model):
     name = models.CharField(max_length=254)
+    banner_text = models.CharField(max_length=254)
     gallery_title = models.CharField(max_length=254)
     gallery_text = models.CharField(max_length=254)
     video_title = models.CharField(max_length=254)

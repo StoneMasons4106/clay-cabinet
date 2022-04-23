@@ -41,6 +41,7 @@ class ContentAdmin(admin.ModelAdmin):
 
     fields = (
         'name',
+        'banner_text',
         'gallery_title',
         'gallery_text',
         'video_title',

@@ -168,6 +168,19 @@ h1 b {
     cursor: pointer;
 }
 
+.banner-container {
+    width: 100%;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    background-color: #f8dada;
+}
+
+.banner-container p {
+    margin-top: 1rem !important;
+}
+
 
 /* Contact contact/templates/contact/contact.html */
 

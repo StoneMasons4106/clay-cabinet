@@ -47,6 +47,14 @@
 
 <body>
 
+  {% if page == "home" %}
+  <div class="banner-container row justify-content-center text-center">
+      <div class="col">
+        <p>{{ content.banner_text }}</p>
+      </div>
+  </div>
+  {% endif %}
+
   <!-- ======= Navbar ======= -->
   <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
     <div class="container py-2 py-md-5">
