@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECURE_KEY")
 DEBUG = 'DEVELOPMENT' in os.environ
 
 if DEBUG:
-    ALLOWED_HOSTS = ['127.0.0.1']
+    ALLOWED_HOSTS = ['127.0.0.1', os.environ.get("MY_HOSTNAME")]
     SECURE_SSL_REDIRECT = False
 else:
     ALLOWED_HOSTS = [os.environ.get("MY_HOSTNAME")]
