@@ -16,7 +16,8 @@ Phone: {{ phone }}
 
 Order Total: ${{ order_total }}
 Delivery: ${{ delivery_cost }}
-Sales Tax: ${{ sales_tax }}
+Sales Tax: ${{ sales_tax }}{% if order.discount_code %}
+Discount: -{{ order.discount_code }}%{% endif %}
 Grand Total: ${{ grand_total }}
 
 Custom Notes: {{ order.custom_order_notes }}

@@ -21,4 +21,4 @@ Tracking Number: {{ tracking_number }}
 Track Your Order Here: https://tools.usps.com/go/TrackConfirmAction.action?tLabels={{ tracking_number }} 
 {% endif %}
 Thank you from Clay Cabinet!
-https://claycabinet.herokuapp.com/
+https://claycabinet.com/
