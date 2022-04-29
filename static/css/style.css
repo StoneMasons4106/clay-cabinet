@@ -128,7 +128,7 @@
 
 /* Homepage home/templates/home/index.html */
 
-h1 b {
+h1 span {
     font-size: 40px;
 }
 
