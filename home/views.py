@@ -28,8 +28,11 @@ def index(request):
 def privacy_policy(request):
     '''A view to return the privacy policy page'''
 
+    content = get_object_or_404(Content, name="Homepage Content")
+
     context = {
         'page': 'home',
+        'content': content,
     }
 
     return render(request, 'home/privacypolicy.html', context)
