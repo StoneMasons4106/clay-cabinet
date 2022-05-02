@@ -317,20 +317,20 @@
     
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.PLAYING) {
-        playerId = event.target.h.id;
-        if (playerId == 'player-1') {
+        playerId = event.target.id;
+        if (playerId == '1') {
           stopVideoTwo();
           stopVideoThree();
           stopVideoFour();
-        } else if (playerId == 'player-2') {
+        } else if (playerId == '2') {
           stopVideoOne();
           stopVideoThree();
           stopVideoFour();
-        } else if (playerId == 'player-3') {
+        } else if (playerId == '3') {
           stopVideoOne();
           stopVideoTwo();
           stopVideoFour();
-        } else if (playerId == 'player-4') {
+        } else if (playerId == '4') {
           stopVideoOne();
           stopVideoThree();
           stopVideoTwo();
