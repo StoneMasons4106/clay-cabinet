@@ -9,14 +9,14 @@
 # General
 --------------------------------------------------------------*/
 @font-face {
-  font-family: 'BubbleJellyShadow';
+  font-family: 'ArtsyCat';
   font-style: normal;
   font-weight: normal;
-  src: url('font/BubbleJellyShadow.otf') format("opentype");
+  src: url('font/ArtsyCat.otf') format("opentype");
 }
 
 body {
-  font-family: 'BubbleJellyShadow', serif;
+  font-family: 'ArtsyCat', serif;
   color: #0d1e2d;
   font-size: 24px;
   background-color: #d6f9ff;
@@ -32,7 +32,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
-  font-family: 'BubbleJellyShadow', serif;
+  font-family: 'ArtsyCat', serif;
   font-size: 40px;
 }
 
