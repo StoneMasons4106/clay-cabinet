@@ -26,7 +26,12 @@ def contact(request):
         except:
             blacklisted_user = False
 
-        if blacklisted_user:
+        try:
+            blacklisted_email = BlackList.objects.get(email=user_email)
+        except:
+            blacklisted_email = False
+
+        if blacklisted_user or blacklisted_email:
             pass
         else:
             contact_notification_message = render_to_string(
