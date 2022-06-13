@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Content
+from .models import Content, BlackList
 
 # Register your models here.
 
@@ -20,4 +20,20 @@ class ContentAdmin(admin.ModelAdmin):
     ordering = ('name',)
 
 
+class BlackListAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+
+    fields = (
+        'name',
+        'first_name',
+        'last_name',
+        'email',
+    )
+
+    ordering = ('name',)
+
+
 admin.site.register(Content, ContentAdmin)
+admin.site.register(BlackList, BlackListAdmin)
