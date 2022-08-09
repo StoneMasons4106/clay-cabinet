@@ -9,7 +9,7 @@ from datetime import datetime
 
 def create_new_contact(email, first_name, last_name):
 
-    client = hubspot.Client.create(api_key=os.environ.get("HUBSPOT_API_KEY"))
+    client = hubspot.Client.create(access_token=os.environ.get("HUBSPOT_API_KEY"))
 
     properties = {
         "email": email,
@@ -32,7 +32,7 @@ def create_new_contact(email, first_name, last_name):
 
 def add_phone_number_to_contact(contact_id, phone_number):
     
-    client = hubspot.Client.create(api_key=os.environ.get("HUBSPOT_API_KEY"))
+    client = hubspot.Client.create(access_token=os.environ.get("HUBSPOT_API_KEY"))
 
     properties = {
         "phone": phone_number,
@@ -46,8 +46,6 @@ def add_phone_number_to_contact(contact_id, phone_number):
 def create_new_note(message):
 
     url = "https://api.hubapi.com/crm/v3/objects/notes"
-
-    querystring = {"hapikey":os.environ.get("HUBSPOT_API_KEY")}
 
     tz = timezone(os.environ.get("TZ"))
 
@@ -69,9 +67,10 @@ def create_new_note(message):
     headers = {
         'accept': "application/json",
         'content-type': "application/json",
+        'authorization': f'Bearer {os.environ.get("HUBSPOT_API_KEY")}',
     }
 
-    response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+    response = requests.request("POST", url, data=payload, headers=headers)
     json = response.json()
     return json["id"]
 
@@ -80,14 +79,17 @@ def associate_note_with_contact(contact_id, note_id):
 
     url = f"https://api.hubapi.com/crm/v3/objects/notes/{note_id}/associations/contact/{contact_id}/202"
 
-    querystring = {"hapikey":os.environ.get("HUBSPOT_API_KEY")}
+    headers = {
+        'accept': 'application/json',
+        'authorization': f'Bearer {os.environ.get("HUBSPOT_API_KEY")}',
+    }
 
-    headers = {'accept': 'application/json'}
-
-    requests.request("PUT", url, headers=headers, params=querystring)
+    requests.request("PUT", url, headers=headers)
 
 
-def create_new_deal(contact_id, deal_amount, full_name, order_no):
+def create_new_deal(deal_amount, full_name, order_no):
+
+    client = hubspot.Client.create(access_token=os.environ.get("HUBSPOT_API_KEY"))
 
     tz = timezone(os.environ.get("TZ"))
 
@@ -104,65 +106,45 @@ def create_new_deal(contact_id, deal_amount, full_name, order_no):
 
     ts = int(utcdt.timestamp()*1000)
 
-    url= f'https://api.hubapi.com/deals/v1/deal?hapikey={os.environ.get("HUBSPOT_API_KEY")}'
-    
-    headers={}
-    
-    headers["Content-Type"]="application/json"
-    
-    data = json.dumps({
-    "associations": {
-        "associatedVids": [
-        contact_id
-        ]
-    },
-    "properties": [
-        {
-        "value": f"{full_name} - {order_no}",
-        "name": "dealname"
-        },
-        {
-        "value": "closedwon",
-        "name": "dealstage"
-        },
-        {
-        "value": "default",
-        "name": "pipeline"
-        },
-        {
-        "value": os.environ.get("HUBSPOT_OWNER_ID"),
-        "name": "hubspot_owner_id"
-        },
-        {
-        "value": ts,
-        "name": "closedate"
-        },
-        {
-        "value": deal_amount,
-        "name": "amount"
-        },
-        {
-        "value": "newbusiness",
-        "name": "dealtype"
-        }
-      ]
-    })
+    properties = {
+        "dealname": f"{full_name} - {order_no}",
+        "dealstage": "closedwon",
+        "pipeline": "default",
+        "hubspot_owner_id": os.environ.get("HUBSPOT_OWNER_ID"),
+        "closedate": ts,
+        "amount": deal_amount,
+        "dealtype":"newbusiness",
+    }
 
-    response = requests.post(url, headers = headers, data = data)
-    return response.json()["dealId"]
+    simple_public_object_input = SimplePublicObjectInput(properties=properties)
+    
+    try:
+        api_response = client.crm.deals.basic_api.create(simple_public_object_input=simple_public_object_input)
+        return api_response.id
+    except ApiException as e:
+        print("Exception when calling basic_api->create: %s\n" % e)
+
+
+def associate_deal_with_contact(contact_id, deal_id):
+
+    client = hubspot.Client.create(access_token=os.environ.get("HUBSPOT_API_KEY"))
+
+    try:
+        client.crm.deals.associations_api.create(deal_id=deal_id, to_object_type="contact", to_object_id=contact_id, association_type="3")
+    except ApiException as e:
+        print("Exception when calling associations_api->create: %s\n" % e)
 
 
 def associate_note_with_deal(deal_id, note_id):
 
     url = f"https://api.hubapi.com/crm/v4/objects/notes/{note_id}/associations/deal/{deal_id}"
 
-    querystring = {"hapikey":os.environ.get("HUBSPOT_API_KEY")}
-
     payload = "[{\"associationCategory\":\"HUBSPOT_DEFINED\",\"associationTypeId\":214}]"
 
     headers = {
         'accept': "application/json",
-        'content-type': "application/json"
+        'content-type': "application/json",
+        'authorization': f'Bearer {os.environ.get("HUBSPOT_API_KEY")}',
     }
 
-    requests.request("PUT", url, data=payload, headers=headers, params=querystring)
+    requests.request("PUT", url, data=payload, headers=headers)

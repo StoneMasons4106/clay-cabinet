@@ -2,11 +2,9 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from django.conf import settings
 
-from .models import OrderLineItem, Order, DiscountCode
+from .models import OrderLineItem, Order
 
-import stripe
 
 @receiver(post_save, sender=OrderLineItem)
 def update_on_save(sender, instance, created, **kwargs):
