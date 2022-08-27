@@ -266,8 +266,7 @@
     var playerFour;
     function onYouTubeIframeAPIReady() {
       var decodedYoutubeResponse = new DOMParser().parseFromString('{{ youtube_feed.items }}', "text/html");
-      var jsonAlmostReadyYoutubeResponse = decodedYoutubeResponse.documentElement.textContent.replaceAll("'", '"')
-      var jsonReadyYoutubeResponse = jsonAlmostReadyYoutubeResponse.replaceAll('Craftin"', "Craftin");
+      var jsonReadyYoutubeResponse = decodedYoutubeResponse.documentElement.textContent.replaceAll("'", '"');
       var jsonYoutubeResponse = JSON.parse(jsonReadyYoutubeResponse);
       playerOne = new YT.Player('player-1', {
         height: '400',
@@ -276,6 +275,7 @@
         playerVars: {
           'playsinline': 0,
           'enablejsapi': 1,
+          'origin': 'https://www.claycabinet.com',
         },
         events: {
             'onStateChange': onPlayerStateChange
@@ -288,6 +288,7 @@
         playerVars: {
           'playsinline': 0,
           'enablejsapi': 1,
+          'origin': 'https://www.claycabinet.com',
         },
         events: {
             'onStateChange': onPlayerStateChange
@@ -300,6 +301,7 @@
         playerVars: {
           'playsinline': 0,
           'enablejsapi': 1,
+          'origin': 'https://www.claycabinet.com',
         },
         events: {
             'onStateChange': onPlayerStateChange
@@ -312,6 +314,7 @@
         playerVars: {
           'playsinline': 0,
           'enablejsapi': 1,
+          'origin': 'https://www.claycabinet.com',
         },
         events: {
             'onStateChange': onPlayerStateChange

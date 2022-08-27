@@ -9,5 +9,8 @@ def get_videos():
     channel = os.environ.get("YOUTUBE_CHANNEL_ID")
     url = f'https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId={channel}&maxResults=4&order=date&key={key}'
     response = requests.get(url)
+    for video in response.json()['items']:
+        video['snippet']['description'].replace("'", "")
+        video['snippet']['title'].replace("'", "")
     content.video_content = str(response.json())
     content.save()
