@@ -46,18 +46,11 @@
         </div>
     </div>
     <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-        <div class="item col-lg-6 youtube-embed-container">
-            <div id="player-1"></div>
+        {% for video in youtube_feed.items %}
+        <div class="item col-lg-6">
+            <iframe class="youtube-embed" src="https://www.youtube.com/embed/{{video.id.videoId}}?controls=1" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="item col-lg-6 youtube-embed-container">
-            <div id="player-2"></div>
-        </div>
-        <div class="item col-lg-6 youtube-embed-container">
-            <div id="player-3"></div>
-        </div>
-        <div class="item col-lg-6 youtube-embed-container">
-            <div id="player-4"></div>
-        </div>
+        {% endfor %}
     </div>
     </div>
 </section><!-- End Clients Section -->

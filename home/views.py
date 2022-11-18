@@ -12,7 +12,7 @@ def index(request):
     testimonials = Testimonial.objects.values()
     content = get_object_or_404(Content, name="Homepage Content")
 
-    youtube_videos = ast.literal_eval(content.video_content)
+    youtube_videos = get_videos()
 
     context = {
         'page': 'home',
